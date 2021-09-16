@@ -85,7 +85,7 @@ public class FakeData {
     public Category getCategory(String code){
         for(Category categories : categoriesList){
             if(categories.getCatCode().equals(code)){
-                return categories;
+                    return categories;
             }
         }
         return null;
@@ -127,13 +127,15 @@ public class FakeData {
         }
         return null;
     }
-    public Member getMember(String name){
+    public List<Member> getMember(String name){
+
+        List<Member> temp = new ArrayList<>();
         for(Member members : membersList){
-            if(members.getName() == name){
-                return members;
+            if(members.getName().equals(name)){
+                temp.add(members);
             }
         }
-        return null;
+        return temp;
     }
     public boolean addMember(Member members){
         if(this.getMember(members.getMemberID()) != null){

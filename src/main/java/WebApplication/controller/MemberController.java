@@ -44,9 +44,9 @@ public class MemberController {
             return ResponseEntity.notFound().build();
         }
     }
-    @GetMapping("{name}") //GET at http://localhost:XXXX/name/Shanessa
-    public ResponseEntity<Member> getMemberPath(@PathVariable(value = "name") String name) {
-        Member members = fakeData.getMember(name);
+    @GetMapping("/name/{name}") //GET at http://localhost:XXXX/member/Shanessa
+    public ResponseEntity<List<Member>> getByName(@PathVariable(value = "name") String name) {
+        List<Member> members = fakeData.getMember(name);
         if(members != null) {
             return ResponseEntity.ok().body(members);
         } else {
