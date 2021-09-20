@@ -13,6 +13,10 @@ public class Member {
     private String address;
     private String password;
 
+    public Member(){
+
+    }
+
     public Member(int memberID, String name, String email, String phoneNumb, String address, String password){
         this.memberID = memberID;
         this.name = name;
