@@ -24,7 +24,9 @@ public class FakeData {
         productList.add(new Product(20000,"DENIM",jeans,"M",7));
         productList.add(new Product(30000,"BLACK",boots,"40",12));
 
-        membersList.add(new Member(1,"Shanessa","shanessa.m7493@gmail.com","081932550943","Heerkensveld 22","gnvshanessa"));
+        membersList.add(new Member(0,"Shanessa","shanessa.m7493@gmail.com","081932550943","Heerkensveld 22","gnvshanessa"));
+        membersList.add(new Member(1,"Nevena","nevena.i.g@gmail.com","081293953498","Schans 3","nevena.i"));
+
     }
     public List<Product> getProduct(){
         return productList;
