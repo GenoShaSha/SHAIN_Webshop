@@ -1,9 +1,8 @@
-package WebApplication.controller;
+package web_application.controller;
 
-import WebApplication.model.Category;
-import WebApplication.model.Member;
-import WebApplication.model.Product;
-import WebApplication.repository.FakeData;
+import web_application.model.Category;
+import web_application.model.Product;
+import web_application.repository.FakeData;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

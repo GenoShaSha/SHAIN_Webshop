@@ -1,8 +1,8 @@
-package WebApplication.repository;
+package web_application.repository;
 
-import WebApplication.model.Category;
-import WebApplication.model.Member;
-import WebApplication.model.Product;
+import web_application.model.Category;
+import web_application.model.Member;
+import web_application.model.Product;
 
 import java.util.ArrayList;
 import java.util.List;

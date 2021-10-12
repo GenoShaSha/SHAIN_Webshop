@@ -1,4 +1,4 @@
-package WebApplication.model;
+package web_application.model;
 
 public class Product {
     private int productID;
