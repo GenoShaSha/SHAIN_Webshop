@@ -7,7 +7,6 @@ import WebApplication.model.Product;
 import java.util.ArrayList;
 import java.util.List;
 
- //test
 public class FakeData {
     private final List<Product> productList = new ArrayList<>();
     private final List<Category> categoriesList = new ArrayList<>();
