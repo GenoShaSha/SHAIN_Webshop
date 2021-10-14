@@ -46,6 +46,7 @@ public class FakeData {
         }
         return null;
     }
+    //test
     public List<Product> getProduct(Category categories){
         List<Product> filteredByCat = new ArrayList<>();
         for(Product products : productList){
