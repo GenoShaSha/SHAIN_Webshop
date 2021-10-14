@@ -40,7 +40,7 @@ public class FakeData {
     }
     public Product getProduct(String name){
         for(Product products : productList){
-            if(products.getProductName() == name){
+            if(products.getProductName().equals(name)){
                 return products;
             }
         }
@@ -103,7 +103,7 @@ public class FakeData {
         if(category == null){
             return false;
         }
-        membersList.remove(category);
+        categoriesList.remove(category);
         return true;
     }
     public boolean updateCategory(Category category){
