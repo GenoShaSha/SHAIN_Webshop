@@ -123,7 +123,7 @@ public class FakeData {
 
     public Member getMember(Long id){
         for(Member members : membersList){
-            if(members.getId() == id){
+            if(members.getId().equals(id)){
                 return members;
             }
         }

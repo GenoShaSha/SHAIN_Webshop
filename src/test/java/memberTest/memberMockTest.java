@@ -35,7 +35,6 @@ public class memberMockTest {
         Member test2 = fake.getMember(5L);
 
         Assertions.assertEquals(test2,null);
-
     }
 
 
