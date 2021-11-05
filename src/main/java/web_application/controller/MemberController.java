@@ -19,7 +19,7 @@ public class MemberController {
     private static final FakeData fakeData = new FakeData();
 
     @Autowired
-    IMember repo;
+    private IMember repo;
 
     @GetMapping("/welcome")
     @ResponseBody
@@ -30,14 +30,7 @@ public class MemberController {
     }
     @GetMapping //Get All Members
     public ResponseEntity<List<Member>> getAllMembers() {
-        List<Member> members = null;
-        members = repo.findAll();
-        if(members != null) {
-            return ResponseEntity.ok().body(members);
-        }
-        else {
-            return ResponseEntity.notFound().build();
-        }
+            return ResponseEntity.ok().body(repo.findAll());
     }
 //
 //    @GetMapping("{accNumb}") //GET at http://localhost:XXXX/accNumb/1
@@ -73,7 +66,7 @@ public class MemberController {
     //POST at http://localhost:XXXX/member/
     public ResponseEntity<Member> createMember(@RequestBody Member member) {
         if (member == null){
-            String entity =  "This member with the ID : " + member.getId() + " already exists.";
+            String entity =  "This member already exists.";
             return new ResponseEntity(entity, HttpStatus.CONFLICT);
         } else {
             repo.save(member);
