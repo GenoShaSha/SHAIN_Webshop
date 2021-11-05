@@ -107,13 +107,12 @@ public class FakeData {
         categoriesList.remove(category);
         return true;
     }
-    public boolean updateCategory(Category category){
-        Category previous = this.getCategory(category.getCatCode());
-        if(previous == null){
+    public boolean updateCategory(Category category,Category newCat){
+        if(category == null){
             return false;
         }
-        previous.setCatCode(category.getCatCode());
-        previous.setName(category.getName());
+        category.setCatCode(newCat.getCatCode());
+        category.setName(newCat.getName());
         return true;
     }
 
@@ -121,15 +120,15 @@ public class FakeData {
     public List<Member> getMembersList(){
         return membersList;
     }
-//
-//    public Member getMember(int id){
-//        for(Member members : membersList){
-//            if(members.getUserID() == id){
-//                return members;
-//            }
-//        }
-//        return null;
-//    }
+
+    public Member getMember(Long id){
+        for(Member members : membersList){
+            if(members.getId() == id){
+                return members;
+            }
+        }
+        return null;
+    }
     public List<Member> getMemberByFirstName(String firstName){
 
         List<Member> temp = new ArrayList<>();
@@ -150,39 +149,34 @@ public class FakeData {
         }
         return temp;
     }
-//
-//    public boolean addMember(Member members){
-//        if(this.getMember(members.getUserID()) != null){
-//            return false;
-//        }
-//        membersList.add(members);
-//        return true;
-//    }
-//    public boolean deleteMember(int id){
-//        Member members = getMember(id);
-//        if(members == null){
-//            return false;
-//        }
-//        membersList.remove(members);
-//        return true;
-////    }
-//    public boolean updateMember(Member members){
-//        Member previous = this.getMember(members.getUserID());
-//        if(previous == null){
-//            return false;
-//        }
-//        previous.setUserID(members.getUserID());
-//        previous.setFirstName(members.getFirstName());
-//        previous.setLastName(members.getLastName());
-//        previous.setBirthDate(members.getBirthDate());
-//        previous.setEmail(members.getEmail());
-//        previous.setPhoneNumb(members.getPhoneNumb());
-//        previous.setAddress(members.getAddress());
-//        previous.setCity(members.getCity());
-//        previous.setCountry(members.getCountry());
-//        previous.setPostalCode(members.getPostalCode());
-//        previous.setUsername(members.getUsername());
-//        previous.setPassword(members.getPassword());
-//        return true;
-//    }
+
+    public boolean addMember(Member members){
+        if(this.getMember(members.getId()) != null){
+            return false;
+        }
+        membersList.add(members);
+        return true;
+    }
+    public boolean deleteMember(Long id){
+        Member members = getMember(id);
+        if(members == null){
+            return false;
+        }
+        membersList.remove(members);
+        return true;
+ }
+        public void updateMember(Member members){
+        Member previous = members;
+        previous.setFirstName(members.getFirstName());
+        previous.setLastName(members.getLastName());
+        previous.setBirthDate(members.getBirthDate());
+        previous.setEmail(members.getEmail());
+        previous.setPhoneNumb(members.getPhoneNumb());
+        previous.setAddress(members.getAddress());
+        previous.setCity(members.getCity());
+        previous.setCountry(members.getCountry());
+        previous.setPostalCode(members.getPostalCode());
+        previous.setUsername(members.getUsername());
+        previous.setPassword(members.getPassword());
+    }
 }

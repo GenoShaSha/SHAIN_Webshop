@@ -13,6 +13,12 @@ public class Member extends User {
     public Member(String firstName, String lastName, String birthDate, String email, String phoneNumb, String address, String city, String country, String postalCode, String username, String password){
         super(firstName,lastName,birthDate,email,phoneNumb,address,city,country,postalCode,username,password);
     }
+
+    public Member(Long id,String firstName, String lastName, String birthDate, String email, String phoneNumb, String address, String city, String country, String postalCode, String username, String password){
+        super(firstName,lastName,birthDate,email,phoneNumb,address,city,country,postalCode,username,password);
+        this.id = id;
+    }
+
     public Member(){
 
     }
