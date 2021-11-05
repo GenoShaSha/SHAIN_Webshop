@@ -24,8 +24,8 @@ public class FakeData {
         productList.add(new Product(20000,"DENIM",jeans,"M",7));
         productList.add(new Product(30000,"BLACK",boots,"40",12));
 
-        membersList.add(new Member(1,"Shanessa","shanessa.m7493@gmail.com","081932550943","Heerkensveld 22","gnvshanessa"));
-        membersList.add(new Member(2,"Nevena","nevena.i.g@gmail.com","081293953498","Schans 3","nevena.i"));
+        membersList.add(new Member("Shanessa","Kostaman","23 September 2002","shanessa.m7493@gmail.com","081932550943","Heerkensveld 22","Eindhoven","Netherlands","5641PD","gnvshanessa","tiwi9318"));
+        membersList.add(new Member("Nevena Ivanova","Ginceva","18 September 2000","nevena.i.g@gmail.com","081293953498","Schans 3","Eindhoven","Netherlands","5641PP","nevenaGinceva","neveginceva"));
     }
     public List<Product> getProduct(){
         return productList;
@@ -93,7 +93,7 @@ public class FakeData {
         return null;
     }
     public boolean addCategory(Category category){
-        if(this.getMember(category.getCatCode()) != null){
+        if(this.getCategory(category.getCatCode()) != null){
             return false;
         }
         categoriesList.add(category);
@@ -121,51 +121,68 @@ public class FakeData {
     public List<Member> getMembersList(){
         return membersList;
     }
-
-    public Member getMember(int id){
-        for(Member members : membersList){
-            if(members.getMemberID() == id){
-                return members;
-            }
-        }
-        return null;
-    }
-    public List<Member> getMember(String name){
+//
+//    public Member getMember(int id){
+//        for(Member members : membersList){
+//            if(members.getUserID() == id){
+//                return members;
+//            }
+//        }
+//        return null;
+//    }
+    public List<Member> getMemberByFirstName(String firstName){
 
         List<Member> temp = new ArrayList<>();
         for(Member members : membersList){
-            if(members.getName().equals(name)){
+            if(members.getFirstName().equals(firstName)){
                 temp.add(members);
             }
         }
         return temp;
     }
-    public boolean addMember(Member members){
-        if(this.getMember(members.getMemberID()) != null){
-            return false;
+    public List<Member> getMemberByLastName(String lastName){
+
+        List<Member> temp = new ArrayList<>();
+        for(Member members : membersList){
+            if(members.getLastName().equals(lastName)){
+                temp.add(members);
+            }
         }
-        membersList.add(members);
-        return true;
+        return temp;
     }
-    public boolean deleteMember(int id){
-        Member members = getMember(id);
-        if(members == null){
-            return false;
-        }
-        membersList.remove(members);
-        return true;
-    }
-    public boolean updateMember(Member members){
-        Member previous = this.getMember(members.getMemberID());
-        if(previous == null){
-            return false;
-        }
-        previous.setMemberID(members.getMemberID());
-        previous.setName(members.getName());
-        previous.setAddress(members.getAddress());
-        previous.setEmail(members.getEmail());
-        previous.setPhoneNumb(members.getPhoneNumb());
-        previous.setPassword(members.getPassword());
-        return true;
-    }
+//
+//    public boolean addMember(Member members){
+//        if(this.getMember(members.getUserID()) != null){
+//            return false;
+//        }
+//        membersList.add(members);
+//        return true;
+//    }
+//    public boolean deleteMember(int id){
+//        Member members = getMember(id);
+//        if(members == null){
+//            return false;
+//        }
+//        membersList.remove(members);
+//        return true;
+////    }
+//    public boolean updateMember(Member members){
+//        Member previous = this.getMember(members.getUserID());
+//        if(previous == null){
+//            return false;
+//        }
+//        previous.setUserID(members.getUserID());
+//        previous.setFirstName(members.getFirstName());
+//        previous.setLastName(members.getLastName());
+//        previous.setBirthDate(members.getBirthDate());
+//        previous.setEmail(members.getEmail());
+//        previous.setPhoneNumb(members.getPhoneNumb());
+//        previous.setAddress(members.getAddress());
+//        previous.setCity(members.getCity());
+//        previous.setCountry(members.getCountry());
+//        previous.setPostalCode(members.getPostalCode());
+//        previous.setUsername(members.getUsername());
+//        previous.setPassword(members.getPassword());
+//        return true;
+//    }
 }

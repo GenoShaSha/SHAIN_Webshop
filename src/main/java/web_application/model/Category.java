@@ -22,23 +22,6 @@ public class Category {
         this.name = name;
     }
 
-/*    @Override
-    public boolean equals(Object obj){
-        if(this == obj){
-            return true;
-        }
-        if(obj == null || getClass() != obj.getClass()){
-            return false;
-        }
-        Categories categories = (Categories) obj;
-        return catID == categories.catID;
-    }
-
-    @Override
-    public int hashCode(){
-        return Objects.hash(catID);
-    }*/
-
     @Override
     public String toString(){
         return "Categories: " +

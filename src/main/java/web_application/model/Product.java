@@ -1,12 +1,13 @@
 package web_application.model;
 
-public class Product {
+public class Product{
     private int productID;
     private int articleNumber;
     private String productName;
     private Category category;
     private String size;
     private int qty;
+    private float price;
 
     public Product(int articleNumber, String productName, Category category, String size, int qty){
 //        this.productID = productID;

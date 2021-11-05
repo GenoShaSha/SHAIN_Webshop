@@ -29,10 +29,16 @@ class ListMemberComponent extends Component {
                 <div className="row">
                     <table className="table table-striped table-bordered">
                             <tr>
-                                <th>Name</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Birth Date</th>                               
                                 <th>Email</th>
                                 <th>Phone Number</th>
                                 <th>Address</th>
+                                <th>City</th>
+                                <th>Country</th>
+                                <th>Postal Code</th>
+                                <th>Username</th>
                                 <th>Password</th>
                             </tr>
                         <tbody>
@@ -40,10 +46,16 @@ class ListMemberComponent extends Component {
                                 this.state.members.map(
                                     member =>
                                     <tr key = {member.id}>
-                                        <td>{member.name}</td>
+                                        <td>{member.firstName}</td>
+                                        <td>{member.lastName}</td>
+                                        <td>{member.birthDate}</td>
                                         <td>{member.email}</td>
                                         <td>{member.phoneNumb}</td>
                                         <td>{member.address}</td>
+                                        <td>{member.city}</td>
+                                        <td>{member.country}</td>
+                                        <td>{member.postalCode}</td>
+                                        <td>{member.username}</td>
                                         <td>{member.password}</td>
                                     </tr>
                                 )

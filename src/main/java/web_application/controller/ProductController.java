@@ -65,14 +65,14 @@ public class ProductController {
             return new ResponseEntity(uri,HttpStatus.CREATED);
         }
     }
-
-    @DeleteMapping("{ArtNumb}")
-    //DELETE at http://localhost:XXXX/product/10000
-    public ResponseEntity deleteProduct(@PathVariable int artnumb)
-    {
-        fakeData.deleteMember(artnumb);
-        return ResponseEntity.ok().build();
-    }
+//
+//    @DeleteMapping("{ArtNumb}")
+//    //DELETE at http://localhost:XXXX/product/10000
+//    public ResponseEntity deleteProduct(@PathVariable int artnumb)
+//    {
+//        fakeData.deleteMember(artnumb);
+//        return ResponseEntity.ok().build();
+//    }
 
 
 }
