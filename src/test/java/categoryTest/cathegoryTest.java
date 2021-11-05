@@ -29,4 +29,23 @@ public class cathegoryTest {
 
     }
 
+    @Test
+    public void UpdateCategoryTest()
+    {
+        FakeData fake = new FakeData();
+
+        fake.addCategory(new Category("BKS","Pants"));
+
+        Category test = fake.getCategory("BKS");
+
+        Assertions.assertEquals(test.getName(),"Pants");
+
+        fake.updateCategory("BKS",new Category("BSK","Pants"));
+
+        Category test2 = fake.getCategory("BSK");
+
+        Assertions.assertEquals("Pants",test2.getName());
+
+    }
+
 }

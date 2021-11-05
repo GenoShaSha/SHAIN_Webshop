@@ -71,11 +71,9 @@ public class FakeData {
         productList.remove(products);
         return true;
     }
-    public boolean updateProduct(Product products){
-        Product previous = this.getProduct(products.getArticleNumber());
-        if(previous == null){
-            return false;
-        }
+    public boolean updateProduct(String name,Product products){
+        Product previous = this.getProduct(name);
+
         previous.setProductName(products.getProductName());
         previous.setArticleNumber(products.getArticleNumber());
         previous.setQuantity(products.getQuantity());
@@ -107,10 +105,10 @@ public class FakeData {
         categoriesList.remove(category);
         return true;
     }
-    public boolean updateCategory(Category category,Category newCat){
-        if(category == null){
-            return false;
-        }
+    public boolean updateCategory(String code,Category newCat){
+
+        Category category = this.getCategory(code);
+
         category.setCatCode(newCat.getCatCode());
         category.setName(newCat.getName());
         return true;
@@ -123,7 +121,7 @@ public class FakeData {
 
     public Member getMember(Long id){
         for(Member members : membersList){
-            if(members.getId().equals(id)){
+            if(members.getId() == id){
                 return members;
             }
         }
@@ -165,8 +163,10 @@ public class FakeData {
         membersList.remove(members);
         return true;
  }
-        public void updateMember(Member members){
-        Member previous = members;
+        public void updateMember(Long id, Member members){
+
+        Member previous = this.getMember(id);
+
         previous.setFirstName(members.getFirstName());
         previous.setLastName(members.getLastName());
         previous.setBirthDate(members.getBirthDate());
