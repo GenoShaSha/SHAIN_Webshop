@@ -1,5 +1,7 @@
 package web_application.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import web_application.dataConnection.ICategory;
 import web_application.model.Category;
 import web_application.repository.FakeData;
 import org.springframework.http.HttpStatus;
@@ -11,22 +13,35 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/category")
-
-
+@CrossOrigin(origins = "*")
 public class CategoryController {
     private static final FakeData fakeData = new FakeData();
 
-    @GetMapping("/welcome")
-    @ResponseBody
-    public String SayWelcome()
-    {
+    @Autowired
+    ICategory repo;
 
-        return "Welcome to our website!";
-    }
+
     @GetMapping //Get All Category
     public ResponseEntity<List<Category>> getAllCategory() {
         List<Category> categories = null;
-        categories = fakeData.getCategory();
+        categories = repo.findAll();
+        return ResponseEntity.ok().body(categories);
+    }
+
+    @GetMapping("/woman")
+    public ResponseEntity<List<Category>> getCatWoman() {
+        List<Category> categories = repo.getCategoriesByGender("W");
+        if(categories != null) {
+            return ResponseEntity.ok().body(categories);
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/man")
+    public ResponseEntity<List<Category>> getCatMan() {
+        List<Category> categories = repo.getCategoriesByGender("M");
         if(categories != null) {
             return ResponseEntity.ok().body(categories);
         }

@@ -20,7 +20,7 @@ public class productMockTest {
         FakeData fake = new FakeData();
 
         Category shirts = new Category("SRT","Shirts");
-        fake.addProduct(new Product(5,"MOLAS",shirts,"L",10));
+        fake.addProduct(new Product(5,"MOLAS",shirts,"L",10,15.00));
 
         Product test = fake.getProduct(5);
         Product test3 = fake.getProduct("MOLAS");
@@ -47,13 +47,13 @@ public class productMockTest {
         FakeData fake = new FakeData();
 
         Category shirts = new Category("SRT","Shirts");
-        fake.addProduct(new Product(5,"MOLAS",shirts,"L",10));
+        fake.addProduct(new Product(5,"MOLAS",shirts,"L",10,15.00));
 
         Product test = fake.getProduct(5);
 
         Assertions.assertEquals(test.getProductName(),"MOLAS");
 
-        fake.updateProduct("MOLAS",new Product(5,"MONAS",shirts,"L",10));
+        fake.updateProduct("MOLAS",new Product(5,"MONAS",shirts,"L",10,15.00));
 
         Product test2 = fake.getProduct(5);
 

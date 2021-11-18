@@ -1,5 +1,7 @@
 package web_application.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import web_application.dataConnection.IProduct;
 import web_application.model.Category;
 import web_application.model.Product;
 import web_application.repository.FakeData;
@@ -17,12 +19,15 @@ import java.util.Optional;
 public class ProductController {
     private static final FakeData fakeData = new FakeData();
 
+    @Autowired
+    IProduct repo;
+
     @GetMapping("/welcome")
     @ResponseBody
     public String SayWelcome()
     {
-        String message = "Welcome to our website!";
-        return message;
+        repo.save(new Product(5,"MOLAS",new Category("SRT","Shirts"),"L",10,15.00));
+        return null;
     }
     @GetMapping //Get All Products
     public ResponseEntity<List<Product>> getAllProducts(@RequestParam(value = "category") Optional<String> category) {

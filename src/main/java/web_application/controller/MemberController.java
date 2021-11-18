@@ -30,7 +30,8 @@ public class MemberController {
     }
     @GetMapping //Get All Members
     public ResponseEntity<List<Member>> getAllMembers() {
-            return ResponseEntity.ok().body(repo.findAll());
+
+        return ResponseEntity.ok().body(repo.findAll());
     }
 //
 //    @GetMapping("{accNumb}") //GET at http://localhost:XXXX/accNumb/1

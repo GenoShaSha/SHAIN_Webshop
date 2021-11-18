@@ -1,29 +1,33 @@
 package web_application.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "products")
 public class Product{
-    private int productID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private int articleNumber;
     private String productName;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "categories_id")
     private Category category;
     private String size;
     private int qty;
-    private float price;
+    private double price;
 
-    public Product(int articleNumber, String productName, Category category, String size, int qty){
-//        this.productID = productID;
+    public Product(){}
+
+    public Product(int articleNumber, String productName, Category category, String size, int qty, double price){
         this.articleNumber = articleNumber;
         this.productName = productName;
         this.category = category;
         this.size = size;
         this.qty = qty;
+        this.price = price;
     }
 
-    //    public int getProductID(){
-//        return productID;
-//    }
-//    public void setProductID(int productID){
-//        this.productID = productID;
-//    }
     public int getArticleNumber(){
         return articleNumber;
     }
@@ -48,26 +52,20 @@ public class Product{
     public void setQuantity(int qty){
         this.qty = qty;
     }
+    public double getPrice() {
+        return price;
+    }
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
-//    @Override
-//    public boolean equals(Object obj){
-//        if(this == obj){
-//            return  true;
-//        }
-//        if(obj == null || getClass() != obj.getClass()){
-//            return false;
-//        }
-//        Products products = (Products) obj;
-//        return articleNumber == products.articleNumber
-//        && (productName.equals(products.productName)
-//                && categories.equals(products.categories)
-//                && size.equals(products.size));
-//    }
+    public Long getId() {
+        return id;
+    }
 
-//    //@Override
-//    public int hasCode(){
-//        return Objects.hash(articleNumber);
-//    }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     @Override
     public String toString(){
@@ -76,6 +74,7 @@ public class Product{
                 ", Product Name=" + productName +
                 ", Categories=" + category +
                 ", Size=" + size +
-                ", Quantity=" + qty;
+                ", Quantity=" + qty +
+                ", Price=" + price;
     }
 }
