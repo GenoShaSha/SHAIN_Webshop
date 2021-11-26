@@ -4,16 +4,14 @@ stages:
 - sonarqube-check
 
 build:
- stage: build
- script: 
-  - cd Backend
-  - ./gradlew build
-  - ./gradlew.bat --stop
+  stage: build
+  script: 
+    - ./gradlew build -x test
+    - ./gradlew.bat --stop
 
 test:
   stage: test
-  script:
-    - cd Backend
+  script: 
     - ./gradlew test
     - ./gradlew.bat --stop
 
@@ -21,16 +19,15 @@ sonarqube-check:
   stage: sonarqube-check
   image: gradle:jre11-slim
   variables:
-    SONAR_USER_HOME: "${Backend}/.sonar"  # Defines the location of the analysis task cache
+    SONAR_USER_HOME: "${Individual_WebShopping}/.sonar"  # Defines the location of the analysis task cache
     GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
   cache:
     key: "${do}"
     paths:
-      - Backend/.sonar/cache
+      - .sonar/cache
   script: 
-    - cd Backend
-    - ./gradlew sonarqube
-    - ./gradlew.bat --stop
+   - ./gradlew sonarqube
+   - ./gradlew.bat --stop
   allow_failure: true
   only:
-    - master # or the name of your main branch
+    - main # or the name of your main branch
