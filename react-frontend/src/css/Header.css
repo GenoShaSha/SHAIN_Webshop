@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  li{
+    list-style-type: none;
+    padding-inline: 5px;
+  
+  }
+  
+  a{
+    text-decoration: none;
+  }
+  
+  nav{
+    display: flex;
+    justify-content: space-around;
+    min-height: 10vh;
+    align-items: center;
+    font-family: inter;
+  }
+  
+  .navbar-brand{
+    font-size: 40px !important;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .navbar-light .navbar-brand {
+    color: aliceblue !important;
+}
+  
+  nav .navBarLinks{
+    display: flex;
+    justify-content: space-around;
+    width: 30%;
+  }
+
+  .collapse.navbar-collapse {
+    justify-content: end;
+}
+.navbar-light .navbar-nav .nav-link {
+    color:aliceblue !important;
+}
