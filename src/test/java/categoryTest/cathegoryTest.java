@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.context.ContextConfiguration;
 import web_application.model.Category;
-import web_application.model.Member;
-import web_application.repository.FakeData;
+import web_application.dummyData.FakeData;
 
 @ContextConfiguration
 public class cathegoryTest {
@@ -15,7 +14,7 @@ public class cathegoryTest {
     {
         FakeData fake = new FakeData();
 
-        fake.addCategory(new Category("BKS","Pants"));
+        fake.addCategory(new Category("BKS","Pants","s"));
 
         Category test = fake.getCategory("BKS");
 
@@ -34,13 +33,13 @@ public class cathegoryTest {
     {
         FakeData fake = new FakeData();
 
-        fake.addCategory(new Category("BKS","Pants"));
+        fake.addCategory(new Category("BKS","Pants","s"));
 
         Category test = fake.getCategory("BKS");
 
         Assertions.assertEquals(test.getName(),"Pants");
 
-        fake.updateCategory("BKS",new Category("BSK","Pants"));
+        fake.updateCategory("BKS",new Category("BSK","Pants","s"));
 
         Category test2 = fake.getCategory("BSK");
 

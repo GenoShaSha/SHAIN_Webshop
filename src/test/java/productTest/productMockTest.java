@@ -4,9 +4,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.context.ContextConfiguration;
 import web_application.model.Category;
-import web_application.model.Member;
 import web_application.model.Product;
-import web_application.repository.FakeData;
+import web_application.dummyData.FakeData;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -19,7 +18,7 @@ public class productMockTest {
     {
         FakeData fake = new FakeData();
 
-        Category shirts = new Category("SRT","Shirts");
+        Category shirts = new Category("SRT","Shirts","s");
         fake.addProduct(new Product(5,"MOLAS",shirts,"L",10,15.00));
 
         Product test = fake.getProduct(5);
@@ -46,7 +45,7 @@ public class productMockTest {
     {
         FakeData fake = new FakeData();
 
-        Category shirts = new Category("SRT","Shirts");
+        Category shirts = new Category("SRT","Shirts","s");
         fake.addProduct(new Product(5,"MOLAS",shirts,"L",10,15.00));
 
         Product test = fake.getProduct(5);

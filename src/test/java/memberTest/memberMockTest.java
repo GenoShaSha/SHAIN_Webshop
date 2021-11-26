@@ -1,21 +1,10 @@
 package memberTest;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.util.Assert;
-import web_application.dataConnection.IMember;
-import web_application.model.Category;
 import web_application.model.Member;
-import web_application.repository.FakeData;
-
-import java.util.List;
-
-import static org.mockito.Mockito.when;
+import web_application.dummyData.FakeData;
 
 @ContextConfiguration
 public class memberMockTest {

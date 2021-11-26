@@ -1,4 +1,4 @@
-package web_application.repository;
+package web_application.dummyData;
 
 import web_application.model.Category;
 import web_application.model.Member;
@@ -13,9 +13,9 @@ public class FakeData {
     private final List<Member> membersList = new ArrayList<>();
 
     public FakeData(){
-        Category shirts = new Category("SRT","Shirts");
-        Category jeans = new Category("JNS","Jeans");
-        Category boots = new Category("BTS","Boots");
+        Category shirts = new Category("SRT","Shirts","s");
+        Category jeans = new Category("JNS","Jeans","s");
+        Category boots = new Category("BTS","Boots","s");
         categoriesList.add(shirts);
         categoriesList.add(jeans);
         categoriesList.add(boots);

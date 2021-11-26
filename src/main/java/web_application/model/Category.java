@@ -6,20 +6,19 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "categories")
-@NoArgsConstructor
 public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(name = "catCode")
     private String catCode;
+    @Column(name = "name")
     private String name;
+    @Column(name = "gender")
     private String gender;
 
-    public Category(String catCode, String name){
-        this.catCode = catCode;
-        this.name = name;
-    }
+    public Category(){}
 
     public Category(String catCode, String name,String gender){
         this.catCode = catCode;
