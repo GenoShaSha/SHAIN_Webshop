@@ -6,12 +6,14 @@ stages:
 build:
   stage: build
   script: 
+    - cd Backend
     - ./gradlew build -x test
     - ./gradlew.bat --stop
 
 test:
   stage: test
   script: 
+    - cd Backend
     - ./gradlew test
     - ./gradlew.bat --stop
 
@@ -26,6 +28,7 @@ sonarqube-check:
     paths:
       - .sonar/cache
   script: 
+   - cd Backend
    - ./gradlew sonarqube
    - ./gradlew.bat --stop
   allow_failure: true
