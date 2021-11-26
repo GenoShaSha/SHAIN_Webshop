@@ -1,5 +1,7 @@
 package web_application.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.persistence.*;
 
 @Entity
@@ -17,7 +19,22 @@ public class Product{
     private int qty;
     private double price;
 
+    @Transient
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @Column(name = "categories_id")
+    private Long categoryId;
+
     public Product(){}
+
+
+    public Product(int articleNumber, String productName, Long categoryId, String size, int qty, double price){
+        this.articleNumber = articleNumber;
+        this.productName = productName;
+        this.categoryId = categoryId;
+        this.size = size;
+        this.qty = qty;
+        this.price = price;
+    }
 
     public Product(int articleNumber, String productName, Category category, String size, int qty, double price){
         this.articleNumber = articleNumber;
@@ -27,6 +44,8 @@ public class Product{
         this.qty = qty;
         this.price = price;
     }
+
+
 
     public int getArticleNumber(){
         return articleNumber;
@@ -67,6 +86,14 @@ public class Product{
         this.id = id;
     }
 
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
+
     @Override
     public String toString(){
         return "Product:" +
@@ -75,6 +102,6 @@ public class Product{
                 ", Categories=" + category +
                 ", Size=" + size +
                 ", Quantity=" + qty +
-                ", Price=" + price;
+                ", Price=" + price + this.categoryId;
     }
 }

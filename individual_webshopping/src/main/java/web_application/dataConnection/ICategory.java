@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ICategory extends JpaRepository<Category,Long> {
     List<Category> getCategoriesByGender(String gender);
+    Category getCategoryByName(String name);
 }
