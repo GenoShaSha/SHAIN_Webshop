@@ -2,15 +2,16 @@ package categoryTest;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import web_application.model.Category;
 import web_application.dummyData.FakeData;
 
-@ContextConfiguration
+@SpringBootConfiguration
 public class cathegoryTest {
 
     @Test
-    public void AddAndRemoveCaregoryTest()
+    public void AddAndRemoveCategoryTest()
     {
         FakeData fake = new FakeData();
 

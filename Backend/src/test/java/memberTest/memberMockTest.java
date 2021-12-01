@@ -2,11 +2,9 @@ package memberTest;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.test.context.ContextConfiguration;
 import web_application.model.Member;
 import web_application.dummyData.FakeData;
 
-@ContextConfiguration
 public class memberMockTest {
 
     @Test
