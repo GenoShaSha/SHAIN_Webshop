@@ -8,7 +8,8 @@ import web_application.model.Category;
 import web_application.dummyData.FakeData;
 
 @SpringBootConfiguration
-public class cathegoryTest {
+@SpringBootTest
+public class CategoryTest {
 
     @Test
     public void AddAndRemoveCategoryTest()

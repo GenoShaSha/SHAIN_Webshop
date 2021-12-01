@@ -9,5 +9,6 @@ public interface IUserService {
     void AddMember(Member m);
     List<Member> GetAllMembers();
     void RemoveMember(Member m);
+    Member getMemberByUsername(String username);
 
 }

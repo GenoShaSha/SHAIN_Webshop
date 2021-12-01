@@ -9,5 +9,7 @@ public interface IUserRepo {
     void AddMember(Member m);
     List<Member> GetAllMembers();
     void RemoveMember(Member m);
+    Member getMemberByUsername(String username);
+
 
 }

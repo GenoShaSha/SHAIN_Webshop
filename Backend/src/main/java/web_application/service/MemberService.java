@@ -33,4 +33,9 @@ public class MemberService implements IUserService {
     public void RemoveMember(Member m) {
         repo.RemoveMember(m);
     }
+
+    @Override
+    public Member getMemberByUsername(String username) {
+        return repo.getMemberByUsername(username);
+    }
 }

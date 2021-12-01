@@ -28,5 +28,10 @@ public class UserRepo implements IUserRepo {
     public void RemoveMember(Member m) {
         repo.delete(m);
     }
+
+    @Override
+    public Member getMemberByUsername(String username) {
+       return repo.getMemberByUsername(username);
+    }
 }
 

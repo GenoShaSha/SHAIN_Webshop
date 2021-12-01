@@ -2,9 +2,11 @@ package memberTest;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.SpringBootConfiguration;
 import web_application.model.Member;
 import web_application.dummyData.FakeData;
 
+@SpringBootConfiguration
 public class memberMockTest {
 
     @Test

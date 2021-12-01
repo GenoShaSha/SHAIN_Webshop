@@ -79,15 +79,15 @@ public class MemberController {
     @PostMapping()
     //POST at http://localhost:XXXX/member/
     public ResponseEntity createMember(@RequestBody Member member) {
-        if (member == null){
-            String entity =  "This member already exists.";
-            return new ResponseEntity(entity, HttpStatus.CONFLICT);
-        } else {
-            logic.AddMember(member);
-            String url = "member" + "/" + member.getId();
-            URI uri = URI.create(url);
-            return new ResponseEntity(uri,HttpStatus.CREATED);
-        }
+        if(logic.getMemberByUsername(member.getUsername()) != null){
+                String entity =  "This member already exists.";
+                return new ResponseEntity(entity, HttpStatus.CONFLICT);
+            } else {
+                logic.AddMember(member);
+                String url = "member" + "/" + member.getId();
+                URI uri = URI.create(url);
+                return new ResponseEntity(uri,HttpStatus.CREATED);
+            }
     }
 
 //

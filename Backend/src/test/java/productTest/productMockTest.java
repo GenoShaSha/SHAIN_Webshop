@@ -2,12 +2,14 @@ package productTest;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.SpringBootConfiguration;
 import web_application.model.Category;
 import web_application.model.Product;
 import web_application.dummyData.FakeData;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@SpringBootConfiguration
 public class productMockTest {
 
 
