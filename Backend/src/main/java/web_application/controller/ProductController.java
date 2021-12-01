@@ -25,7 +25,7 @@ public class ProductController {
     IProduct repo;
     IProductService logic;
 
-    @GetMapping("/welcome")
+    @   GetMapping("/welcome")
     @ResponseBody
     public String SayWelcome()
     {
