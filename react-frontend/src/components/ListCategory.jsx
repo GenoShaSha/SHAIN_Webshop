@@ -44,6 +44,7 @@ class ListCategory extends Component {
                   <td>{category.catCode}</td>
                   <td>{category.gender}</td>
                   <td>{category.name}</td>
+                  
                 </tr>
               )
             }

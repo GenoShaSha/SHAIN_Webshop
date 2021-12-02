@@ -31,4 +31,9 @@ public class ProductRepo implements IProductRepo {
     public void RemoveProduct(Product product) {
         repo.delete(product);
     }
+
+    @Override
+    public List<Product> getProductsByCategory_GenderAnAndCategory_Name(String gender, String name) {
+        return null;
+    }
 }

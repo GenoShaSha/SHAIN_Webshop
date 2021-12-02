@@ -6,13 +6,12 @@ import web_application.interfaces.IUserRepo;
 import web_application.model.Member;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class UserRepo implements IUserRepo {
     @Autowired
     IMember repo;
-    public UserRepo(){}
-
 
     @Override
     public void AddMember(Member m) {
@@ -30,7 +29,7 @@ public class UserRepo implements IUserRepo {
     }
 
     @Override
-    public Member getMemberByUsername(String username) {
+    public Optional<Member> getMemberByUsername(String username) {
        return repo.getMemberByUsername(username);
     }
 }

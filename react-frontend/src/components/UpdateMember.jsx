@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import postFormData from '../api/post'
+// import postFormData from '../api/post'
+import "../css/form.css"
 
-class AddMember extends Component {
+
+class UpdateMember extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -84,7 +86,7 @@ class AddMember extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="card col-md-6 offset-md-3 offset-md-3">
-                            <h3 className="text-center">Sign Up</h3>
+                            <h3 className="text-center">Update profile information</h3>
                             <div className="card-body">
                                 <form style = {{ marginBottom: '30mm' }} >
 
@@ -159,4 +161,4 @@ class AddMember extends Component {
         )
     }
 }
-export default AddMember
+export default UpdateMember

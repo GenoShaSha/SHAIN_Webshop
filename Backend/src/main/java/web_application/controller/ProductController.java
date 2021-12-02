@@ -15,6 +15,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/product")
 
@@ -33,22 +34,9 @@ public class ProductController {
         return null;
     }
     @GetMapping //Get All Products
-    public ResponseEntity<List<Product>> getAllProducts(@RequestParam(value = "category") Optional<String> category) {
-        List<Product> products = null;
-        if(category.isPresent()) {
-            Category c = fakeData.getCategory(category.get());
-            products = fakeData.getProduct(c);
-        }
-        else
-        {
-            products = fakeData.getProduct();
-        }
-        if(products != null) {
-            return ResponseEntity.ok().body(products);
-        }
-        else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<List<Product>> getAllProducts() {
+            return ResponseEntity.ok().body(repo.findAll());
+
     }
 
     @GetMapping("{artNumb}") //GET at http://localhost:XXXX/artNumb/10000
@@ -73,11 +61,13 @@ public class ProductController {
     @PostMapping()
     //POST at http://localhost:XXXX/member/
     public ResponseEntity<Member> createProduct(@RequestBody Product product) {
+        System.out.println(product);
+        System.out.println(product.getCategories());
         if (repo.getProductsByArticleNumber(product.getArticleNumber())!= null){
             String entity =  "This product already exists.";
             return new ResponseEntity(entity, HttpStatus.CONFLICT);
         } else {
-            logic.AddProduct(product);
+            repo.save(product);
             String url = "product" + "/" + product.getArticleNumber();
             URI uri = URI.create(url);
             return new ResponseEntity(uri,HttpStatus.CREATED);

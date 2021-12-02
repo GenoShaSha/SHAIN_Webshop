@@ -30,4 +30,9 @@ public class ProductService implements IProductService {
     public void RemoveProduct(Product product) {
         repo.RemoveProduct(product);
     }
+
+    @Override
+    public List<Product> getProductsByCategory_GenderAnAndCategory_Name(String gender, String name) {
+        return repo.getProductsByCategory_GenderAnAndCategory_Name(gender,name);
+    }
 }

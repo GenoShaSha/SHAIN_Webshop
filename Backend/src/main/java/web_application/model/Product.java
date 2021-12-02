@@ -17,6 +17,8 @@ public class Product{
     private int qty;
     private double price;
 
+
+
     public Product(){}
 
     public Product(int articleNumber, String productName, Category category, String size, int qty, double price){

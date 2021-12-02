@@ -24,8 +24,8 @@ public class FakeData {
         productList.add(new Product(20000,"DENIM",jeans,"M",7,145.50));
         productList.add(new Product(30000,"BLACK",boots,"40",12,550.00));
 
-        membersList.add(new Member("Shanessa","Kostaman","23 September 2002","shanessa.m7493@gmail.com","081932550943","Heerkensveld 22","Eindhoven","Netherlands","5641PD","gnvshanessa","tiwi9318"));
-        membersList.add(new Member("Nevena Ivanova","Ginceva","18 September 2000","nevena.i.g@gmail.com","081293953498","Schans 3","Eindhoven","Netherlands","5641PP","nevenaGinceva","neveginceva"));
+        membersList.add(new Member("Shanessa","Kostaman","23 September 2002","shanessa.m7493@gmail.com","081932550943","Heerkensveld 22","Eindhoven","Netherlands","5641PD","gnvshanessa","tiwi9318","USER"));
+        membersList.add(new Member("Nevena Ivanova","Ginceva","18 September 2000","nevena.i.g@gmail.com","081293953498","Schans 3","Eindhoven","Netherlands","5641PP","nevenaGinceva","neveginceva","USER"));
     }
     public List<Product> getProduct(){
         return productList;

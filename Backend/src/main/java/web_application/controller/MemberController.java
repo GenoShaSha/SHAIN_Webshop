@@ -7,6 +7,7 @@ import web_application.dummyData.FakeData;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import web_application.security.UserCreateRequest;
 
 import java.net.URI;
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.List;
 
 public class MemberController {
     private static final FakeData fakeData = new FakeData();
+
 
     @Autowired
     IUserService logic;
@@ -64,30 +66,13 @@ public class MemberController {
         }
     }
 
-    @PostMapping("/login")
-    //POST at http://localhost:XXXX/member/
-    public ResponseEntity LoginMember(@RequestBody Member member) {
-        for (Member other : logic.GetAllMembers()) {
-            if (other.getUsername().equals(member.getUsername()) & other.getPassword().equals(member.getPassword())) {
-                return new ResponseEntity(HttpStatus.OK);
-            }
-        }
-        return new ResponseEntity(HttpStatus.NOT_FOUND);
-    }
-
 
     @PostMapping()
     //POST at http://localhost:XXXX/member/
-    public ResponseEntity createMember(@RequestBody Member member) {
-        if(logic.getMemberByUsername(member.getUsername()) != null){
-                String entity =  "This member already exists.";
-                return new ResponseEntity(entity, HttpStatus.CONFLICT);
-            } else {
-                logic.AddMember(member);
-                String url = "member" + "/" + member.getId();
-                URI uri = URI.create(url);
-                return new ResponseEntity(uri,HttpStatus.CREATED);
-            }
+    public ResponseEntity createMember(@RequestBody UserCreateRequest member) {
+        logic.registerMember(member);
+                return new ResponseEntity(HttpStatus.CREATED);
+
     }
 
 //

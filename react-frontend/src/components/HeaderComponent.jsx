@@ -103,22 +103,48 @@ class HeaderComponent extends Component {
                 <NavLink href="/ListOfCategory">LIST OF CATEGORY</NavLink>
               </NavItem>
 
-              {isAuthenticated === "logged in" ? (
+
+
+
+              {isAuthenticated != null ? (
               ""
               ) : (
-                <NavItem>
-                <NavLink href="/SignIn">
-                  LOGIN
-                </NavLink>
-              </NavItem>
+              <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                PROFILE
+              </DropdownToggle>
+              <DropdownMenu right>
+                  <DropdownItem href="/SignIn">
+                    LOGIN
+                  </DropdownItem>
+                  <DropdownItem href="/SignUp">
+                    REGISTER
+                  </DropdownItem>
+
+                
+              </DropdownMenu>
+            </UncontrolledDropdown>
+
+
               )}
 
-              {isAuthenticated === "logged in" ? (
-                <NavItem>
-                  <NavLink href="/SignOut">
-                    LOGOUT
-                  </NavLink>
-                </NavItem>
+              {isAuthenticated != null ? (
+                  <UncontrolledDropdown nav inNavbar>
+                  <DropdownToggle nav caret>
+                    PROFILE
+                  </DropdownToggle>
+                  <DropdownMenu right>
+                  <DropdownItem href="/UpdateProfile">
+                        My Profile
+                      </DropdownItem>
+                      <DropdownItem href="/SignoUT">
+                        LOGOUT
+                      </DropdownItem>
+                   
+    
+                    
+                  </DropdownMenu>
+                </UncontrolledDropdown>
               ) : (
                 ""
               )}
