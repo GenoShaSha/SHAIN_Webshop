@@ -75,6 +75,24 @@ public class MemberController {
 
     }
 
+    @PutMapping("/{username}")
+    public ResponseEntity<Member> updateMember(@PathVariable String username, @RequestBody Member member){
+        Member m = logic.getMemberByUsername(username);
+        m.setFirstName(member.getFirstName());
+        m.setLastName(member.getLastName());
+        m.setBirthDate(member.getBirthDate());
+        m.setEmail(member.getEmail());
+        m.setPhoneNumb(member.getPhoneNumb());
+        m.setAddress(member.getAddress());
+        m.setCity(member.getCity());
+        m.setCountry(member.getCountry());
+        m.setPostalCode(member.getPostalCode());
+        m.setUsername(member.getUsername());
+        Member update = logic.UpdateMember(m);
+        return ResponseEntity.ok().body(update);
+
+    }
+
 //
 //    @DeleteMapping("{id}")
 //    //DELETE at http://localhost:XXXX/member/3

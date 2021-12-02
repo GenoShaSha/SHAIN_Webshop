@@ -10,6 +10,7 @@ public interface IUserRepo {
     void AddMember(Member m);
     List<Member> GetAllMembers();
     void RemoveMember(Member m);
+    Member UpdateMember(Member m);
     Optional<Member> getMemberByUsername(String username);
 
 

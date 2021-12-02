@@ -88,7 +88,7 @@ class UpdateMember extends Component {
                         <div className="card col-md-6 offset-md-3 offset-md-3">
                             <h3 className="text-center">Update profile information</h3>
                             <div className="card-body">
-                                <form style = {{ marginBottom: '30mm' }} >
+                                <form style = {{ marginBottom: '10mm' }} >
 
                                     <div className="form=group">
                                         <label> Fist Name : </label>

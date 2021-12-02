@@ -29,6 +29,11 @@ public class UserRepo implements IUserRepo {
     }
 
     @Override
+    public Member UpdateMember(Member m) {
+        return repo.save(m);
+    }
+
+    @Override
     public Optional<Member> getMemberByUsername(String username) {
        return repo.getMemberByUsername(username);
     }

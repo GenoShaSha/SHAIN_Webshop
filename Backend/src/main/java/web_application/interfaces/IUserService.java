@@ -10,6 +10,7 @@ public interface IUserService {
     public void registerMember(UserCreateRequest userCreateRequest);
     List<Member> GetAllMembers();
     void RemoveMember(Member m);
+    Member UpdateMember(Member m);
     Member getMemberByUsername(String username);
 
 }

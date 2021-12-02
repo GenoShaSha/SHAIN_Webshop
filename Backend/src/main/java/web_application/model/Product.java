@@ -10,7 +10,7 @@ public class Product{
     private Long id;
     private int articleNumber;
     private String productName;
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "categories_id")
     private Category category;
     private String size;

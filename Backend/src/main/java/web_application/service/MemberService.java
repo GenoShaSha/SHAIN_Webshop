@@ -44,6 +44,11 @@ public class MemberService implements IUserService {
     }
 
     @Override
+    public Member UpdateMember(Member m) {
+        return repo.UpdateMember(m);
+    }
+
+    @Override
     public Member getMemberByUsername(String username) {
         return repo.getMemberByUsername(username).orElseThrow(EntityNotFoundException::new);
     }
