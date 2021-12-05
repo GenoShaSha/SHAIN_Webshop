@@ -61,8 +61,7 @@ public class ProductController {
     @PostMapping()
     //POST at http://localhost:XXXX/member/
     public ResponseEntity<Member> createProduct(@RequestBody Product product) {
-        System.out.println(product);
-        System.out.println(product.getCategories());
+
         if (repo.getProductsByArticleNumber(product.getArticleNumber())!= null){
             String entity =  "This product already exists.";
             return new ResponseEntity(entity, HttpStatus.CONFLICT);

@@ -92,7 +92,7 @@ class UpdateMember extends Component {
 
                                     <div className="form=group">
                                         <label> Fist Name : </label>
-                                        <input placeholder="First Name" name="fname" className="form-control"
+                                        <input placeholder="First name" name="fname" className="form-control"
                                             value={this.state.firstname} onChange={this.changeNameHandler} />
                                     </div>
                                     <div className="form=group">

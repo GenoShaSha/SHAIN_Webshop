@@ -50,7 +50,7 @@ public class FakeData {
     public List<Product> getProduct(Category categories){
         List<Product> filteredByCat = new ArrayList<>();
         for(Product products : productList){
-            if(products.getCategories().equals(categories)){
+            if(products.getCategory().equals(categories)){
                 filteredByCat.add(products);
             }
         }
@@ -76,7 +76,7 @@ public class FakeData {
 
         previous.setProductName(products.getProductName());
         previous.setArticleNumber(products.getArticleNumber());
-        previous.setQuantity(products.getQuantity());
+        previous.setQty(products.getQty());
         return true;
     }
     public List<Category> getCategory(){

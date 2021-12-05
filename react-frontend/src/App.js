@@ -10,6 +10,8 @@ import SignOut from './components/SignOut';
 import AddProduct from './components/AddProduct';
 import SignUp from './components/SignUp';
 import UpdateMember from './components/UpdateMember';
+import UpdateCategory from './components/UpdateCategory';
+
 
 function App() {
   return (
@@ -29,12 +31,7 @@ function App() {
                 <Route path="/SignOut" component={SignOut}></Route>
                 <Route path="/AddProduct" component={AddProduct}></Route>
                 <Route path="/UpdateProfile" component={UpdateMember}></Route>
-
-
-
-
-
-
+                <Route path="/UpdateCategory" component={UpdateCategory}></Route>
               </Switch>
             </div>
           </Router>

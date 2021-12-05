@@ -38,6 +38,8 @@ export default class AddProduct extends React.Component {
       price: this.state.price,
     };
     console.log(product);
+    JSON.stringify(product)
+    console.log(product);
     axios.post("http://localhost:8080/product", product).then((response) => {
       console.log(response);
     });

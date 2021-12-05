@@ -10,7 +10,7 @@ public class Product{
     private Long id;
     private int articleNumber;
     private String productName;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "categories_id")
     private Category category;
     private String size;
@@ -42,23 +42,31 @@ public class Product{
     public void setProductName(String productName){
         this.productName = productName;
     }
-    public Category getCategories(){
-        return category;
-    }
-    public String getSize(){
-        return size;
-    }
-    public int getQuantity(){
-        return qty;
-    }
-    public void setQuantity(int qty){
-        this.qty = qty;
-    }
     public double getPrice() {
         return price;
     }
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
     }
 
     public Long getId() {

@@ -3,7 +3,7 @@ import CategoryService from '../services/CategoryService'
 import { Table } from 'reactstrap';
 import { Button } from 'reactstrap';
 
-// import '../css/category.css'
+import '../css/list.css'
 
 
 class ListCategory extends Component {
@@ -32,7 +32,8 @@ class ListCategory extends Component {
               <th>ID</th>
               <th>Code</th>
               <th>Gender</th>
-              <th>Name</th>                               
+              <th>Name</th> 
+              <th>Actions</th>                              
             </tr>
           </thead>
           <tbody>
@@ -44,7 +45,9 @@ class ListCategory extends Component {
                   <td>{category.catCode}</td>
                   <td>{category.gender}</td>
                   <td>{category.name}</td>
-                  
+                  <td>
+                    <button onClick = {()=> this.editCat(category.id)} className="updateButton">Update</button>
+                  </td>
                 </tr>
               )
             }
