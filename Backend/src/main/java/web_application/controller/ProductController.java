@@ -26,13 +26,6 @@ public class ProductController {
     IProduct repo;
     IProductService logic;
 
-    @   GetMapping("/welcome")
-    @ResponseBody
-    public String SayWelcome()
-    {
-        repo.save(new Product(5,"MOLAS",new Category("SRT","Shirts","s"),"L",10,15.00));
-        return null;
-    }
     @GetMapping //Get All Products
     public ResponseEntity<List<Product>> getAllProducts() {
             return ResponseEntity.ok().body(repo.findAll());
@@ -53,7 +46,7 @@ public class ProductController {
     @GetMapping("/{CatGender}/{CatName}")
     public ResponseEntity<List<Product>> getProductPath(@PathVariable(value = "CatGender") String gender,@PathVariable(value = "CatName") String name) {
 //       get all products where category.gender == gender && product.gategory.name == name
-        List<Product> temp = repo.getProductsByCategory_GenderAnAndCategory_Name(gender,name);
+        List<Product> temp = repo.getProductsByCategory_GenderAndCategory_Name(gender,name);
         return ResponseEntity.ok().body(temp);
     }
 

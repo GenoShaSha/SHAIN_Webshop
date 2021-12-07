@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface IProduct extends JpaRepository<Product,Long> {
     Product getProductsByArticleNumber(int newArtNumb);
-    @Query(value = "SELECT * FROM products p WHERE Category.gender =?1 and Category.name=?2",nativeQuery = true)
-    List<Product> getProductsByCategory_GenderAnAndCategory_Name(String gender,String name);
+    List<Product> getProductsByCategory_GenderAndCategory_Name(String gender,String name);
+    List<Product> getProductsByCategory_GenderAndCategory_NameAndProductName(String gender,String catName, String prodName);
 }

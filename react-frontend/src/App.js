@@ -11,6 +11,7 @@ import AddProduct from './components/AddProduct';
 import SignUp from './components/SignUp';
 import UpdateMember from './components/UpdateMember';
 import UpdateCategory from './components/UpdateCategory';
+import ShowProduct from './components/ShowProduct';
 
 
 function App() {
@@ -23,8 +24,7 @@ function App() {
                 <Route path="/" exact component={Home}></Route>
                 <Route path="/member" component={ListMemberComponent}></Route>
                 <Route path="/SignUp" component={SignUp}></Route>
-                <Route path="/PoloShirts" component={AddMember}></Route>
-                <Route path="/:gender/:name" component={AddMember}></Route>
+                <Route path="/:gender/:name" component={ShowProduct}></Route>
                 <Route path="/category" component={AddCategory}></Route>
                 <Route path="/ListOfCategory" component={ListCategory}></Route>
                 <Route path="/SignIn" component={SignIn}></Route>

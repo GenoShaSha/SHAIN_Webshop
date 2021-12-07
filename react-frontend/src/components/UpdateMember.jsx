@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 // import postFormData from '../api/post'
 import "../css/form.css"
+import axios from 'axios'
 
 
 class UpdateMember extends Component {
@@ -38,7 +39,8 @@ class UpdateMember extends Component {
     saveMember = (hndl) => {
         hndl.preventDefault();
         let member = { firstName: this.state.firstname,lastName: this.state.lastname,birthDate: this.state.birthDate, email: this.state.email, phoneNumb: this.state.phoneNumb, address: this.state.address, city: this.state.city, country: this.state.country, postalCode: this.state.postalCode, username: this.state.username, password: this.state.password };
-        postFormData(member)
+        axios.put('https://reqres.in/api/articles/1', member)
+        .then(response => this.setState({ updatedAt: response.data.updatedAt }));
     }
     
 
@@ -79,6 +81,7 @@ class UpdateMember extends Component {
     cancel() {
         this.props.history.push('/member');
     }
+
 
     render() {
         return (

@@ -104,7 +104,9 @@ class HeaderComponent extends Component {
               </NavItem>
 
 
-
+              <NavItem>
+                <NavLink href="/AddProduct">CREATE PRODUCT</NavLink>
+              </NavItem>
 
               {isAuthenticated != null ? (
               ""
@@ -119,15 +121,10 @@ class HeaderComponent extends Component {
                   </DropdownItem>
                   <DropdownItem href="/SignUp">
                     REGISTER
-                  </DropdownItem>
-
-                
+                  </DropdownItem> 
               </DropdownMenu>
             </UncontrolledDropdown>
-
-
               )}
-
               {isAuthenticated != null ? (
                   <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav caret>
@@ -137,12 +134,9 @@ class HeaderComponent extends Component {
                   <DropdownItem href="/UpdateProfile">
                         My Profile
                       </DropdownItem>
-                      <DropdownItem href="/SignoUT">
+                      <DropdownItem href="/SignOut">
                         LOGOUT
                       </DropdownItem>
-                   
-    
-                    
                   </DropdownMenu>
                 </UncontrolledDropdown>
               ) : (

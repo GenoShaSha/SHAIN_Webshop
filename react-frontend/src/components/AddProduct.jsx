@@ -16,6 +16,7 @@ export default class AddProduct extends React.Component {
       quantity: "",
       price: "",
       category: "",
+      url: "",
     };
     this.changeArtNumbHandler = this.changeArtNumbHandler.bind(this);
     this.changeNameHandler = this.changeNameHandler.bind(this);
@@ -23,6 +24,7 @@ export default class AddProduct extends React.Component {
     this.changeSizeHandler = this.changeSizeHandler.bind(this);
     this.changeQuantityHandler = this.changeQuantityHandler.bind(this);
     this.changePriceHandler = this.changePriceHandler.bind(this);
+    this.changeUrlHandler = this.changeUrlHandler.bind(this);
 
     this.saveProd = this.saveProd.bind(this);
   }
@@ -36,6 +38,7 @@ export default class AddProduct extends React.Component {
       size: this.state.size,
       qty: this.state.quantity,
       price: this.state.price,
+      url: this.state.url,
     };
     console.log(product);
     JSON.stringify(product)
@@ -61,8 +64,7 @@ export default class AddProduct extends React.Component {
     this.setState({ name: event.target.value });
   };
   changeCategoryHandler = (event) => {
-    this.setState({ category: this.state.categories[event.target.value] });
-    console.log(this.state.category);
+    this.setState({ category: this.state.categories[event.target.value]});
   };
   changeSizeHandler = (event) => {
     this.setState({ size: event.target.value });
@@ -73,10 +75,14 @@ export default class AddProduct extends React.Component {
   changePriceHandler = (event) => {
     this.setState({ price: event.target.value });
   };
+  changeUrlHandler = (event) => {
+    this.setState({ url: event.target.value });
+  };
 
   back() {
     this.props.history.push("/ListOfCategory");
   }
+
 
   render() {
     return (
@@ -110,17 +116,15 @@ export default class AddProduct extends React.Component {
             type="select"
             name="select"
             id="exampleSelect"
-            value={this.state.category}
-            onChange={this.changeCategoryHandler}
-          >
+            value={this.state.categories[this.state.category]}
+            onChange={this.changeCategoryHandler}>
             <option value="" select disabled>
               Select category
             </option>
             {this.state.categories.map((category, index) => (
-              <option value={index} >
-                {category.name} - Gender: {category.gender}
-
-              </option>
+            <option value={index}>
+              {category.name} - Gender: {category.gender}
+            </option>
             ))}
           </Input>
         </FormGroup>
@@ -133,6 +137,17 @@ export default class AddProduct extends React.Component {
             placeholder="size"
             value={this.state.size}
             onChange={this.changeSizeHandler}
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label for="quantity">URL:</Label>
+          <Input
+            type="url"
+            name="url"
+            id="url"
+            placeholder="url"
+            value={this.state.url}
+            onChange={this.changeUrlHandler}
           />
         </FormGroup>
         <FormGroup>

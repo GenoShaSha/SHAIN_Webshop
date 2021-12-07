@@ -12,11 +12,16 @@ class ListCategory extends Component {
         this.state = {
             categories: []
         }
+        this.editCat = this.editCat.bind(this);
     }
     componentDidMount(){
         CategoryService.getCategories().then((response)=>{
            this.setState({categories: response.data}); 
         });
+    }
+
+    editCat(id){
+      this.props.history.push('/UpdateCategory/${id}');
     }
 
     addCat() {

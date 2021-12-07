@@ -16,18 +16,42 @@ public class Product{
     private String size;
     private int qty;
     private double price;
+    private String url;
 
 
 
-    public Product(){}
+    public Product(){
+    }
 
-    public Product(int articleNumber, String productName, Category category, String size, int qty, double price){
+    public Product(int articleNumber, String productName, Category category, String size, int qty, double price) {
         this.articleNumber = articleNumber;
         this.productName = productName;
         this.category = category;
         this.size = size;
         this.qty = qty;
         this.price = price;
+    }
+
+    public Product(int articleNumber, String productName, Category category, String size, int qty, double price, String url){
+        this.articleNumber = articleNumber;
+        this.productName = productName;
+        this.category = category;
+        this.size = size;
+        this.qty = qty;
+        this.price = price;
+        this.url = url;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public int getArticleNumber(){
