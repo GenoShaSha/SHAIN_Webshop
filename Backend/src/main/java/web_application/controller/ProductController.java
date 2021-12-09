@@ -23,12 +23,11 @@ public class ProductController {
     private static final FakeData fakeData = new FakeData();
 
     @Autowired
-    IProduct repo;
     IProductService logic;
 
     @GetMapping //Get All Products
     public ResponseEntity<List<Product>> getAllProducts() {
-            return ResponseEntity.ok().body(repo.findAll());
+        return ResponseEntity.ok().body(logic.GetAllProduct());
 
     }
 
@@ -46,7 +45,7 @@ public class ProductController {
     @GetMapping("/{CatGender}/{CatName}")
     public ResponseEntity<List<Product>> getProductPath(@PathVariable(value = "CatGender") String gender,@PathVariable(value = "CatName") String name) {
 //       get all products where category.gender == gender && product.gategory.name == name
-        List<Product> temp = repo.getProductsByCategory_GenderAndCategory_Name(gender,name);
+        List<Product> temp = logic.getProductsByCategory_GenderAnAndCategory_Name(gender,name);
         return ResponseEntity.ok().body(temp);
     }
 
@@ -55,11 +54,11 @@ public class ProductController {
     //POST at http://localhost:XXXX/member/
     public ResponseEntity<Member> createProduct(@RequestBody Product product) {
 
-        if (repo.getProductsByArticleNumber(product.getArticleNumber())!= null){
+        if (logic.getProductsByArticleNumber(product.getArticleNumber())!= null){
             String entity =  "This product already exists.";
             return new ResponseEntity(entity, HttpStatus.CONFLICT);
         } else {
-            repo.save(product);
+            logic.AddProduct(product);
             String url = "product" + "/" + product.getArticleNumber();
             URI uri = URI.create(url);
             return new ResponseEntity(uri,HttpStatus.CREATED);

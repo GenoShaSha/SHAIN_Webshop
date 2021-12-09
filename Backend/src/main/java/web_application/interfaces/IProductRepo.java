@@ -9,4 +9,5 @@ public interface IProductRepo {
     List<Product> GetAllProduct();
     void RemoveProduct(Product product);
     List<Product> getProductsByCategory_GenderAnAndCategory_Name(String gender,String name);
+    Product getProductsByArticleNumber(int newArtNumb);
 }

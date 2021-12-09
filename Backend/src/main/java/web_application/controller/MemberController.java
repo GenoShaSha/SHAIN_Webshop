@@ -71,8 +71,7 @@ public class MemberController {
     //POST at http://localhost:XXXX/member/
     public ResponseEntity createMember(@RequestBody UserCreateRequest member) {
         logic.registerMember(member);
-                return new ResponseEntity(HttpStatus.CREATED);
-
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 
     @PutMapping("/{username}")
@@ -90,7 +89,6 @@ public class MemberController {
         m.setUsername(member.getUsername());
         Member update = logic.UpdateMember(m);
         return ResponseEntity.ok().body(update);
-
     }
 
 //

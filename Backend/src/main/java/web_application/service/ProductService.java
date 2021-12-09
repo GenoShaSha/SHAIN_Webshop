@@ -35,4 +35,9 @@ public class ProductService implements IProductService {
     public List<Product> getProductsByCategory_GenderAnAndCategory_Name(String gender, String name) {
         return repo.getProductsByCategory_GenderAnAndCategory_Name(gender,name);
     }
+
+    @Override
+    public Product getProductsByArticleNumber(int newArtNumb) {
+        return repo.getProductsByArticleNumber(newArtNumb);
+    }
 }
