@@ -35,11 +35,11 @@ class UpdateCategory extends Component {
 
 
 
-    saveMember = (hndl) => {
-        hndl.preventDefault();
-        let member = { firstName: this.state.firstname,lastName: this.state.lastname,birthDate: this.state.birthDate, email: this.state.email, phoneNumb: this.state.phoneNumb, address: this.state.address, city: this.state.city, country: this.state.country, postalCode: this.state.postalCode, username: this.state.username, password: this.state.password };
-        postFormData(member)
-    }
+    // saveMember = (hndl) => {
+    //     hndl.preventDefault();
+    //     let member = { firstName: this.state.firstname,lastName: this.state.lastname,birthDate: this.state.birthDate, email: this.state.email, phoneNumb: this.state.phoneNumb, address: this.state.address, city: this.state.city, country: this.state.country, postalCode: this.state.postalCode, username: this.state.username, password: this.state.password };
+    //     postFormData(member)
+    // }
     
 
     changeNameHandler = (event) => {
@@ -80,12 +80,12 @@ class UpdateCategory extends Component {
         this.props.history.push('/member');
     }
 
-    componentDidMount() {
-        // Simple PUT request with a JSON body using axios
-        const article = { title: 'React PUT Request Example' };
-        axios.put('https://reqres.in/api/articles/1', article)
-            .then(response => this.setState({ updatedAt: response.data.updatedAt }));
-    }
+    // componentDidMount() {
+    //     // Simple PUT request with a JSON body using axios
+    //     const article = { title: 'React PUT Request Example' };
+    //     axios.put('https://reqres.in/api/articles/1', article)
+    //         .then(response => this.setState({ updatedAt: response.data.updatedAt }));
+    // }
 
     render() {
         return (
