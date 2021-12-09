@@ -1,6 +1,7 @@
 package web_application.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import web_application.interfaces.IUserService;
 import web_application.model.Member;
 import web_application.dummyData.FakeData;
@@ -76,6 +77,7 @@ public class MemberController {
 
     @PutMapping("/{username}")
     public ResponseEntity<Member> updateMember(@PathVariable String username, @RequestBody Member member){
+        BCryptPasswordEncoder code = new BCryptPasswordEncoder();
         Member m = logic.getMemberByUsername(username);
         m.setFirstName(member.getFirstName());
         m.setLastName(member.getLastName());
@@ -87,6 +89,7 @@ public class MemberController {
         m.setCountry(member.getCountry());
         m.setPostalCode(member.getPostalCode());
         m.setUsername(member.getUsername());
+        m.setPassword(code.encode(member.getPassword()));
         Member update = logic.UpdateMember(m);
         return ResponseEntity.ok().body(update);
     }
