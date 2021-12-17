@@ -4,6 +4,7 @@ import web_application.model.Member;
 import web_application.security.UserCreateRequest;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IUserService {
 

@@ -1,26 +1,21 @@
 package web_application.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import web_application.dataConnection.IProduct;
 import web_application.interfaces.IProductService;
-import web_application.model.Category;
 import web_application.model.Member;
 import web_application.model.Product;
-import web_application.dummyData.FakeData;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/product")
 
 public class ProductController {
-    private static final FakeData fakeData = new FakeData();
 
     @Autowired
     IProductService logic;
@@ -29,17 +24,6 @@ public class ProductController {
     public ResponseEntity<List<Product>> getAllProducts() {
         return ResponseEntity.ok().body(logic.GetAllProduct());
 
-    }
-
-    @GetMapping("{artNumb}") //GET at http://localhost:XXXX/artNumb/10000
-    public ResponseEntity<Product> getProductPath(@PathVariable(value = "artNumb") int artNumb) {
-        Product products = fakeData.getProduct(artNumb);
-        if(products != null) {
-            return ResponseEntity.ok().body(products);
-        }
-        else {
-            return ResponseEntity.notFound().build();
-        }
     }
 
     @GetMapping("/{CatGender}/{CatName}")

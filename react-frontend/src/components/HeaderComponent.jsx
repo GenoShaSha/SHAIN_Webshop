@@ -14,6 +14,7 @@ import {
 } from "reactstrap";
 import "../css/Header.css";
 import axios from "axios";
+import jwtDecode from "jwt-decode";
 
 class HeaderComponent extends Component {
   constructor(props) {
@@ -23,6 +24,7 @@ class HeaderComponent extends Component {
       isOpen: false,
       categories: [],
       categoriesmen: [],
+      username : ''
     };
   }
   toggle() {
@@ -45,6 +47,10 @@ class HeaderComponent extends Component {
       });
       console.log(response.data);
     });
+
+    var tok = localStorage.getItem("token")
+    var decoded = jwtDecode(tok)
+    this.state.username = decoded.sub
   }
 
   render() {
@@ -131,7 +137,7 @@ class HeaderComponent extends Component {
                     PROFILE
                   </DropdownToggle>
                   <DropdownMenu right>
-                  <DropdownItem href="/UpdateProfile">
+                  <DropdownItem href={"/" + this.state.username}>
                         My Profile
                       </DropdownItem>
                       <DropdownItem href="/SignOut">

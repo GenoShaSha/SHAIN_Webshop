@@ -4,48 +4,43 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
+import web_application.dummyData.FakeCategoryRepo;
 import web_application.model.Category;
-import web_application.dummyData.FakeData;
+import web_application.service.CategoryService;
+
+import java.util.List;
 
 @SpringBootConfiguration
 @SpringBootTest
 public class CategoryTest {
 
     @Test
-    public void AddAndRemoveCategoryTest()
+    public void AddCategoryTest()
     {
-        FakeData fake = new FakeData();
+        FakeCategoryRepo fakerepo = new FakeCategoryRepo();
+        CategoryService service = new CategoryService(fakerepo);
 
-        fake.addCategory(new Category("BKS","Pants","s"));
+        service.AddCategory(new Category("BKS","Pants","s"));
 
-        Category test = fake.getCategory("BKS");
+        Category test = service.GetAllCategory().get(0);
 
         Assertions.assertEquals(test.getName(),"Pants");
-
-        fake.deleteCategory("BKS");
-
-        Category test2 = fake.getCategory("BKS");
-
-        Assertions.assertEquals(test2,null);
 
     }
 
+
     @Test
-    public void UpdateCategoryTest()
+    public void GetCategoriesByGender()
     {
-        FakeData fake = new FakeData();
+        FakeCategoryRepo fakerepo = new FakeCategoryRepo();
+        CategoryService service = new CategoryService(fakerepo);
 
-        fake.addCategory(new Category("BKS","Pants","s"));
+        service.AddCategory(new Category("BKS","Pants","F"));
+        service.AddCategory(new Category("BKS","Pants","M"));
 
-        Category test = fake.getCategory("BKS");
+        List<Category> test = service.getCategoriesByGender("M");
 
-        Assertions.assertEquals(test.getName(),"Pants");
-
-        fake.updateCategory("BKS",new Category("BSK","Pants","s"));
-
-        Category test2 = fake.getCategory("BSK");
-
-        Assertions.assertEquals("Pants",test2.getName());
+        Assertions.assertEquals(test.size(),1);
 
     }
 

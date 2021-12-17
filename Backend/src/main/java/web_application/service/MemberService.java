@@ -20,6 +20,8 @@ public class MemberService implements IUserService {
 
     private final IUserRepo repo;
     private final BCryptPasswordEncoder passwordEncoder;
+
+
     @Override
     public void registerMember(UserCreateRequest userCreateRequest) {
         Member user = new Member();

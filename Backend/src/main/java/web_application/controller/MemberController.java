@@ -4,13 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import web_application.interfaces.IUserService;
 import web_application.model.Member;
-import web_application.dummyData.FakeData;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import web_application.security.UserCreateRequest;
 
-import java.net.URI;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -18,7 +16,6 @@ import java.util.List;
 @RequestMapping("/member")
 
 public class MemberController {
-    private static final FakeData fakeData = new FakeData();
 
 
     @Autowired
@@ -35,36 +32,6 @@ public class MemberController {
     public ResponseEntity<List<Member>> getAllMembers() {
 
         return ResponseEntity.ok().body(logic.GetAllMembers());
-    }
-//
-//    @GetMapping("{accNumb}") //GET at http://localhost:XXXX/accNumb/1
-//    public ResponseEntity<Member> getMemberPath(@PathVariable(value = "accNumb") int accNumb) {
-//        Member members = fakeData.getMember(accNumb);
-//        if(members != null) {
-//            return ResponseEntity.ok().body(members);
-//        }
-//        else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
-
-    @GetMapping("/name/{firstName}") //GET at http://localhost:XXXX/member/Shanessa
-    public ResponseEntity<List<Member>> getByFirstName(@PathVariable(value = "firstName") String firstName) {
-        List<Member> members = fakeData.getMemberByFirstName(firstName);
-        if(members != null) {
-            return ResponseEntity.ok().body(members);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-    @GetMapping("/name/{lastName}") //GET at http://localhost:XXXX/member/Shanessa
-    public ResponseEntity<List<Member>> getByLastName(@PathVariable(value = "lastName") String lastName) {
-        List<Member> members = fakeData.getMemberByLastName(lastName);
-        if(members != null) {
-            return ResponseEntity.ok().body(members);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
     }
 
 
@@ -94,13 +61,13 @@ public class MemberController {
         return ResponseEntity.ok().body(update);
     }
 
-//
-//    @DeleteMapping("{id}")
-//    //DELETE at http://localhost:XXXX/member/3
-//    public ResponseEntity deleteMember(@PathVariable int id)
-//    {
-//        fakeData.deleteMember(id);
-//        return ResponseEntity.ok().build();
-//    }
+    @GetMapping("/{username}")
+    public ResponseEntity<Member> getMemberbyUsername(@PathVariable String username){
+        System.out.println(username);
+        Member m = logic.getMemberByUsername(username);
+        Member update = logic.UpdateMember(m);
+        return ResponseEntity.ok().body(update);
+    }
+
 
 }

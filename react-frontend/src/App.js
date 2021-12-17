@@ -1,7 +1,6 @@
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import ListMemberComponent from './components/ListMemberComponent';
 import HeaderComponent from './components/HeaderComponent';
-import AddMember from './components/UpdateMember';
 import Home from './components/Home';
 import AddCategory from './components/AddCategory';
 import ListCategory from './components/ListCategory';
@@ -9,9 +8,9 @@ import SignIn from './components/SignIn';
 import SignOut from './components/SignOut';
 import AddProduct from './components/AddProduct';
 import SignUp from './components/SignUp';
-import UpdateMember from './components/UpdateMember';
 import UpdateCategory from './components/UpdateCategory';
 import ShowProduct from './components/ShowProduct';
+import UpdateMember from './components/UpdateMember';
 
 
 function App() {
@@ -20,7 +19,7 @@ function App() {
       <Router>
           <HeaderComponent />
             <div className="container">
-              <Switch> http://localhost:3000/
+              <Switch> 
                 <Route path="/" exact component={Home}></Route>
                 <Route path="/member" component={ListMemberComponent}></Route>
                 <Route path="/SignUp" component={SignUp}></Route>
@@ -30,8 +29,7 @@ function App() {
                 <Route path="/SignIn" component={SignIn}></Route>
                 <Route path="/SignOut" component={SignOut}></Route>
                 <Route path="/AddProduct" component={AddProduct}></Route>
-                <Route path="/UpdateProfile" component={UpdateMember}></Route>
-                <Route path="/UpdateCategory" component={UpdateCategory}></Route>
+                <Route path="/:username" exact component={UpdateMember}></Route>
               </Switch>
             </div>
           </Router>

@@ -14,9 +14,6 @@ public class CategoryRepo implements ICategoryRepo {
     @Autowired
     ICategory repo;
 
-    public CategoryRepo(){
-
-    }
     @Override
     public void AddCategory(Category category) {
         repo.save(category);
