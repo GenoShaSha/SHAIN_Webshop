@@ -43,7 +43,7 @@ public class MemberController {
     }
 
     @PutMapping("/{username}")
-    public ResponseEntity<String> updateMember(@PathVariable String username, @RequestBody Member member){
+    public ResponseEntity<Member> updateMember(@PathVariable String username, @RequestBody Member member){
         BCryptPasswordEncoder code = new BCryptPasswordEncoder();
         Member m = logic.getMemberByUsername(username);
         m.setFirstName(member.getFirstName());
@@ -57,8 +57,8 @@ public class MemberController {
         m.setPostalCode(member.getPostalCode());
         m.setUsername(member.getUsername());
         m.setPassword(code.encode(member.getPassword()));
-        logic.UpdateMember(m);
-        return ResponseEntity.ok().body("updated");
+        Member update = logic.UpdateMember(m);
+        return ResponseEntity.ok().body(update);
     }
 
     @GetMapping("/{username}")
