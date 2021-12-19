@@ -1,6 +1,5 @@
 import axios from 'axios'
 import React, { Component } from 'react'
-import postFormData from '../api/post'
 import "../css/form.css"
 
 
@@ -22,7 +21,12 @@ class SignUp extends Component {
     saveMember = (hndl) => {
         hndl.preventDefault();
         let member = { username: this.state.username,email: this.state.email,  password: this.state.password , role : "USER"};
-        postFormData(member)
+        axios.post('http://localhost:8080/member', member)
+        .then(response => {
+            console.log(response)
+        })    
+        window.location.href = '/SignIn';
+
     }
 
 

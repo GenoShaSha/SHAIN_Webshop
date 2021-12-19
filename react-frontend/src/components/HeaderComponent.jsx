@@ -49,8 +49,10 @@ class HeaderComponent extends Component {
     });
 
     var tok = localStorage.getItem("token")
-    var decoded = jwtDecode(tok)
-    this.state.username = decoded.sub
+    if(tok != null){
+      var translator = jwtDecode(tok)
+      this.state.username = translator.sub  
+    }
   }
 
   render() {

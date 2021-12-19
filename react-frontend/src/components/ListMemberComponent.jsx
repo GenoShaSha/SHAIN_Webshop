@@ -53,9 +53,7 @@ class ListMemberComponent extends Component {
               <td>{member.country}</td>
               <td>{member.postalCode}</td>
               <td>{member.username}</td>
-              <td>
-                <Button variant="primary" href={"/" + member.username}>UPDATE</Button>
-              </td>
+             
             </tr>
           ))}
         </tbody>

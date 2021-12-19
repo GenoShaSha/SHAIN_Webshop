@@ -1,7 +1,6 @@
 import React from 'react';
 import { Switch } from 'react-router';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import postFormData from '../api/postCat'
 import '../css/category.css'
 
 export default class AddCategory extends React.Component {
@@ -22,8 +21,10 @@ export default class AddCategory extends React.Component {
     saveCat = (hndl) => {
         hndl.preventDefault();
         let category = { catCode: this.state.code, name: this.state.name, gender: this.state.gender};
-        postFormData(category)
-    }
+        axios.post("http://localhost:8080/category", category).then((response) => {
+          console.log(response);
+        });    
+      }
 
 
     
