@@ -1,7 +1,6 @@
 import React from "react";
 import { Switch } from "react-router";
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
-import postFormData from "../api/postProd";
 import "../css/category.css";
 import axios from "axios";
 
@@ -40,9 +39,6 @@ export default class AddProduct extends React.Component {
       price: this.state.price,
       url: this.state.url,
     };
-    console.log(product);
-    JSON.stringify(product)
-    console.log(product);
     axios.post("http://localhost:8080/product", product).then((response) => {
       console.log(response);
     });
