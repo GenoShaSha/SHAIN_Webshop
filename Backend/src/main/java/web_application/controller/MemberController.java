@@ -60,6 +60,18 @@ public class MemberController {
         logic.UpdateMember(m);
         return ResponseEntity.ok().body("updated");
     }
+    @PutMapping("/updateRole/{username}")
+    public ResponseEntity<String> updateRoleAdmin(@PathVariable String username){
+        Member m = logic.getMemberByUsername(username);
+        if(m.getRole().equals("USER")){
+            m.setRole("ADMIN");
+        }
+        else {
+            m.setRole("USER");
+        }
+        logic.UpdateMember(m);
+        return ResponseEntity.ok().body("updated");
+    }
 
     @GetMapping("/{username}")
     public ResponseEntity<Member> getMemberbyUsername(@PathVariable String username){

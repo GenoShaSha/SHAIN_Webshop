@@ -1,8 +1,7 @@
+import axios from "axios";
 import React, { Component } from "react";
-import MemberService from "../services/MemberService";
 import { Table } from "reactstrap";
 import { Button } from "reactstrap";
-
 
 class ListMemberComponent extends Component {
   constructor(props) {
@@ -10,17 +9,29 @@ class ListMemberComponent extends Component {
     this.state = {
       members: [],
     };
-    this.signUp = this.signUp.bind(this);
   }
   componentDidMount() {
-    MemberService.getMembers().then((response) => {
+    axios.get("http://localhost:8080/member").then((response) => {
       this.setState({ members: response.data });
     });
   }
 
-  signUp() {
-    this.props.history.push("/signUp");
+  changeRole(username) {
+    axios
+      .put(`http://localhost:8080/member/updateRole/${username}`)
+      .then((response) => {
+        window.location.href = "/member";
+      });
   }
+
+  checkRole(role) {
+    if (role === "USER") {
+      return "ADMIN";
+    } else {
+      return "USER";
+    }
+  }
+
   render() {
     return (
       <Table>
@@ -37,6 +48,8 @@ class ListMemberComponent extends Component {
             <th>Country</th>
             <th>Postal Code</th>
             <th>Username</th>
+            <th>Role</th>
+            <th>Make User Into</th>
           </tr>
         </thead>
         <tbody>
@@ -53,7 +66,15 @@ class ListMemberComponent extends Component {
               <td>{member.country}</td>
               <td>{member.postalCode}</td>
               <td>{member.username}</td>
-             
+              <td>{member.role}</td>
+              <td>
+                <button
+                  onClick={() => this.changeRole(member.username)}
+                  className="updateButton"
+                >
+                  {this.checkRole(member.role)}
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>

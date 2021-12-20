@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import postFormData from '../api/post'
 import "../css/form.css"
 
 
@@ -7,7 +6,6 @@ class UpdateCategory extends Component {
     constructor(props) {
         super(props)
         this.state = {
-           
             firstname: '',
             lastname: '',
             birthDate: '',

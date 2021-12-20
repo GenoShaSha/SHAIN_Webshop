@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import CategoryService from '../services/CategoryService'
 import { Table } from 'reactstrap';
 import { Button } from 'reactstrap';
+import axios from 'axios';
 
 import '../css/list.css'
 
@@ -15,17 +15,19 @@ class ListCategory extends Component {
         this.editCat = this.editCat.bind(this);
     }
     componentDidMount(){
-        CategoryService.getCategories().then((response)=>{
+      axios.get("http://localhost:8080/category").then((response)=>{
            this.setState({categories: response.data}); 
         });
     }
 
     editCat(id){
-      this.props.history.push('/UpdateCategory/${id}');
+      this.props.history.push(`/UpdateCategory/${id}`);
     }
 
     addCat() {
       this.props.history.push('/category');
+      // window.location.href = '/category';
+
   }
 
     render() {

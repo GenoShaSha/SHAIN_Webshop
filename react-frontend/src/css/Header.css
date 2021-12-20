@@ -9,6 +9,10 @@
     padding-inline: 5px;
   
   }
+
+  a.profile.dropdown-toggle.nav-link {
+    margin-right: 15px;
+  }
   
   a{
     text-decoration: none;

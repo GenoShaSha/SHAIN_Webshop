@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import MemberService from "../services/MemberService";
 import { Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button } from 'reactstrap';
 import "../css/Card.css"

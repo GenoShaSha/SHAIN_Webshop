@@ -24,7 +24,8 @@ class HeaderComponent extends Component {
       isOpen: false,
       categories: [],
       categoriesmen: [],
-      username : ''
+      username: "",
+      role: null,
     };
   }
   toggle() {
@@ -48,16 +49,17 @@ class HeaderComponent extends Component {
       console.log(response.data);
     });
 
-    var tok = localStorage.getItem("token")
-    if(tok != null){
-      var translator = jwtDecode(tok)
-      this.state.username = translator.sub  
+    var tok = localStorage.getItem("token");
+    if (tok != null) {
+      var translator = jwtDecode(tok);
+      this.state.username = translator.sub;
+      this.state.role = translator.role;
     }
   }
 
   render() {
-    const isAuthenticated = localStorage.getItem("token")
-
+    var username = this.state.username;
+    var big = username.toUpperCase();
     return (
       <div>
         <Navbar color="dark" light expand="md">
@@ -75,7 +77,9 @@ class HeaderComponent extends Component {
                 </DropdownToggle>
                 <DropdownMenu right>
                   {this.state.categories.map((category) => (
-                    <DropdownItem href={"/" + category.gender + "/" + category.name}>
+                    <DropdownItem
+                      href={"/" + category.gender + "/" + category.name}
+                    >
                       {category.name}
                     </DropdownItem>
                   ))}
@@ -88,7 +92,9 @@ class HeaderComponent extends Component {
                 </DropdownToggle>
                 <DropdownMenu right>
                   {this.state.categoriesmen.map((category) => (
-                    <DropdownItem href={"/" + category.gender + "/" + category.name}>
+                    <DropdownItem
+                      href={"/" + category.gender + "/" + category.name}
+                    >
                       {category.name}
                     </DropdownItem>
                   ))}
@@ -107,44 +113,51 @@ class HeaderComponent extends Component {
                 </NavLink>
               </NavItem>
 
-              <NavItem>
-                <NavLink href="/ListOfCategory">LIST OF CATEGORY</NavLink>
-              </NavItem>
-
-
-              <NavItem>
-                <NavLink href="/AddProduct">CREATE PRODUCT</NavLink>
-              </NavItem>
-
-              {isAuthenticated != null ? (
-              ""
+              {this.state.role == "ADMIN" ? (
+                <NavItem>
+                  <NavLink href="/ListOfCategory">LIST OF CATEGORY</NavLink>
+                </NavItem>
               ) : (
-              <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                PROFILE
-              </DropdownToggle>
-              <DropdownMenu right>
-                  <DropdownItem href="/SignIn">
-                    LOGIN
-                  </DropdownItem>
-                  <DropdownItem href="/SignUp">
-                    REGISTER
-                  </DropdownItem> 
-              </DropdownMenu>
-            </UncontrolledDropdown>
+                ""
               )}
-              {isAuthenticated != null ? (
-                  <UncontrolledDropdown nav inNavbar>
+              {this.state.role == "ADMIN" ? (
+                <NavItem>
+                  <NavLink href="/member">LIST OF USER</NavLink>
+                </NavItem>
+              ) : (
+                ""
+              )}
+              {this.state.role == "ADMIN" ? (
+                <NavItem>
+                  <NavLink href="/AddProduct">CREATE PRODUCT</NavLink>
+                </NavItem>
+              ) : (
+                ""
+              )}
+
+              {this.state.role != null ? (
+                ""
+              ) : (
+                <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav caret>
                     PROFILE
                   </DropdownToggle>
                   <DropdownMenu right>
-                  <DropdownItem href={"/" + this.state.username}>
-                        My Profile
-                      </DropdownItem>
-                      <DropdownItem href="/SignOut">
-                        LOGOUT
-                      </DropdownItem>
+                    <DropdownItem href="/SignIn">LOGIN</DropdownItem>
+                    <DropdownItem href="/SignUp">REGISTER</DropdownItem>
+                  </DropdownMenu>
+                </UncontrolledDropdown>
+              )}
+              {this.state.role != null ? (
+                <UncontrolledDropdown nav inNavbar>
+                  <DropdownToggle nav caret className="profile">
+                    {big}
+                  </DropdownToggle>
+                  <DropdownMenu right>
+                    <DropdownItem href={"/" + this.state.username}>
+                      My Profile
+                    </DropdownItem>
+                    <DropdownItem href="/SignOut">LOGOUT</DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
               ) : (
