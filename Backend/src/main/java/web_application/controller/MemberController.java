@@ -17,7 +17,6 @@ import java.util.List;
 
 public class MemberController {
 
-
     @Autowired
     IUserService logic;
 
@@ -33,15 +32,12 @@ public class MemberController {
 
         return ResponseEntity.ok().body(logic.GetAllMembers());
     }
-
-
     @PostMapping()
     //POST at http://localhost:XXXX/member/
     public ResponseEntity createMember(@RequestBody UserCreateRequest member) {
         logic.registerMember(member);
         return new ResponseEntity(HttpStatus.CREATED);
     }
-
     @PutMapping("/{username}")
     public ResponseEntity<String> updateMember(@PathVariable String username, @RequestBody Member member){
         BCryptPasswordEncoder code = new BCryptPasswordEncoder();
@@ -55,7 +51,6 @@ public class MemberController {
         m.setCity(member.getCity());
         m.setCountry(member.getCountry());
         m.setPostalCode(member.getPostalCode());
-        m.setUsername(member.getUsername());
         m.setPassword(code.encode(member.getPassword()));
         logic.UpdateMember(m);
         return ResponseEntity.ok().body("updated");
@@ -72,14 +67,10 @@ public class MemberController {
         logic.UpdateMember(m);
         return ResponseEntity.ok().body("updated");
     }
-
     @GetMapping("/{username}")
     public ResponseEntity<Member> getMemberbyUsername(@PathVariable String username){
-        System.out.println(username);
         Member m = logic.getMemberByUsername(username);
         Member update = logic.UpdateMember(m);
         return ResponseEntity.ok().body(update);
     }
-
-
 }

@@ -15,12 +15,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/category")
 public class CategoryController {
+
     @Autowired
     ICategoryService logic;
-
-
-
-
 
     @GetMapping //Get All Category
     public ResponseEntity<List<Category>> getAllCategory() {
@@ -28,7 +25,6 @@ public class CategoryController {
         categories = logic.GetAllCategory();
         return ResponseEntity.ok().body(categories);
     }
-
     @GetMapping("/woman")
     public ResponseEntity<List<Category>> getCatWoman() {
         List<Category> categories = logic.getCategoriesByGender("W");
@@ -39,7 +35,6 @@ public class CategoryController {
             return ResponseEntity.notFound().build();
         }
     }
-
     @GetMapping("/man")
     public ResponseEntity<List<Category>> getCatMan() {
         List<Category> categories = logic.getCategoriesByGender("M");
@@ -50,7 +45,6 @@ public class CategoryController {
             return ResponseEntity.notFound().build();
         }
     }
-
     @PostMapping()
     //POST at http://localhost:XXXX/category/
     public ResponseEntity<Category> createCategory(@RequestBody Category category) {

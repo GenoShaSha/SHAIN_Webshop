@@ -39,7 +39,6 @@ function UpdateMember(props) {
             city : City,
             country : Country,
             postalCode : PostalCode,
-            username : Username,
             password : Password,
 
 
@@ -104,11 +103,6 @@ return (
                                 <label> Postal Code : </label>
                                 <input placeholder={Member.postalCode} name="postalCode" className="form-control"
                                     value={PostalCode} onChange={(e) => setPostalCode(e.target.value)} />
-                            </div>
-                            <div className="form=group">
-                                <label> Username : </label>
-                                <input placeholder={Member.username} name="username" className="form-control"
-                                    value={Username} onChange={(e) => setUsername(e.target.value)} />
                             </div>
                             <div className="form=group">
                                 <label> Password : </label>

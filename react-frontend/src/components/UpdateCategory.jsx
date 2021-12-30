@@ -38,6 +38,8 @@ class UpdateCategory extends Component {
     //     let member = { firstName: this.state.firstname,lastName: this.state.lastname,birthDate: this.state.birthDate, email: this.state.email, phoneNumb: this.state.phoneNumb, address: this.state.address, city: this.state.city, country: this.state.country, postalCode: this.state.postalCode, username: this.state.username, password: this.state.password };
     //     postFormData(member)
     // }
+
+
     
 
     changeNameHandler = (event) => {
