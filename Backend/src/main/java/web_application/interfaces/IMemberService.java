@@ -6,7 +6,7 @@ import web_application.security.UserCreateRequest;
 import java.util.List;
 import java.util.Optional;
 
-public interface IUserService {
+public interface IMemberService {
 
     public void registerMember(UserCreateRequest userCreateRequest);
     List<Member> GetAllMembers();

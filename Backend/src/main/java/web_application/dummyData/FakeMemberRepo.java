@@ -1,15 +1,14 @@
 package web_application.dummyData;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import web_application.interfaces.IUserRepo;
+import web_application.interfaces.IMemberRepo;
 import web_application.model.Member;
 
-import javax.swing.plaf.OptionPaneUI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class FakeMemberRepo implements IUserRepo {
+public class FakeMemberRepo implements IMemberRepo {
     ArrayList<Member> FakeMembers;
 
     public FakeMemberRepo() {

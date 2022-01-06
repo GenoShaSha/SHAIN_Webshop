@@ -2,14 +2,14 @@ package web_application.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import web_application.dataConnection.IMember;
-import web_application.interfaces.IUserRepo;
+import web_application.interfaces.IMemberRepo;
 import web_application.model.Member;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class UserRepo implements IUserRepo {
+public class MemberRepo implements IMemberRepo {
     @Autowired
     IMember repo;
 

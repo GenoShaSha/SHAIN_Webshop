@@ -102,13 +102,13 @@ class HeaderComponent extends Component {
               </UncontrolledDropdown>
 
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">
+                <NavLink href="/Product/s/Wishlist">
                   WISHLIST
                 </NavLink>
               </NavItem>
 
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">
+                <NavLink href="/Product/s/Cart">
                   CART
                 </NavLink>
               </NavItem>

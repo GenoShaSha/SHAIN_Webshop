@@ -135,7 +135,7 @@ export default class AddProduct extends React.Component {
             onChange={this.changeSizeHandler}
           />
         </FormGroup>
-        <FormGroup>
+        {/* <FormGroup>
           <Label for="quantity">URL:</Label>
           <Input
             type="url"
@@ -145,6 +145,14 @@ export default class AddProduct extends React.Component {
             value={this.state.url}
             onChange={this.changeUrlHandler}
           />
+        </FormGroup> */}
+        <FormGroup>
+          <Label for="exampleFile">Upload Picture</Label>
+          <Input type="file" name="file" id="exampleFile" value={this.state.url} onChange={this.changeUrlHandler}/>
+          <FormText color="muted">
+            This is some placeholder block-level help text for the above input.
+            It's a bit lighter and easily wraps to a new line.
+          </FormText>
         </FormGroup>
         <FormGroup>
           <Label for="quantity">Quantity:</Label>

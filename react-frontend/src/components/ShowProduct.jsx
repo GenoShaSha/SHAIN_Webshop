@@ -3,8 +3,10 @@ import axios from "axios";
 import { Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button } from 'reactstrap';
 import "../css/Card.css"
-
+import { DataContext } from "./CartActions";
 class ShowProduct extends Component {
+  
+  static contextType = DataContext;
   constructor(props) {
     super(props);
     this.state = {
@@ -28,6 +30,10 @@ class ShowProduct extends Component {
   }
 
   render() {
+    const{addCart} = this.context;
+    const{addToWishlist} = this.context;
+
+
     return (
       <div className="categoryName">
         <label htmlFor="categoryName" style={{fontSize:"50px"}}>{this.state.name}</label>
@@ -42,9 +48,8 @@ class ShowProduct extends Component {
               <CardSubtitle>Size :{product.size}</CardSubtitle>
               <CardSubtitle>Price :{product.price}</CardSubtitle>
               <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-              <Button style={{marginRight:"10px"}}>CART</Button>
-              <Button style={{marginRight:"10px"}}> WISHLIST</Button>
-              <Button style={{marginRight:"10px"}}>DESCRIPTION</Button>
+              <Button style={{marginRight:"10px"}} onClick={()=> addCart(product.id)}>CART</Button>
+              <Button style={{marginRight:"10px"}} onClick={()=> addToWishlist(product.id)}> WISHLIST</Button>
             </CardBody>
           </Card>
           <br></br>

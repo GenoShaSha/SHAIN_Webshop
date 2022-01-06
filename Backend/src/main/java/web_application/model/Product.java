@@ -17,6 +17,7 @@ public class Product{
     private int qty;
     private double price;
     private String url;
+    private int count ;
 
 
 
@@ -99,6 +100,14 @@ public class Product{
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 
     @Override

@@ -2,11 +2,10 @@ package web_application.service;
 
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import web_application.interfaces.IUserRepo;
-import web_application.interfaces.IUserService;
+import web_application.interfaces.IMemberRepo;
+import web_application.interfaces.IMemberService;
 import web_application.model.Member;
 import web_application.security.UserCreateRequest;
 
@@ -16,9 +15,9 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class MemberService implements IUserService {
+public class MemberService implements IMemberService {
 
-    private final IUserRepo repo;
+    private final IMemberRepo repo;
     private final BCryptPasswordEncoder passwordEncoder;
 
 

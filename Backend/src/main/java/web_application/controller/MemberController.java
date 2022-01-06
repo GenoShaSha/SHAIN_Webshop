@@ -2,7 +2,7 @@ package web_application.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import web_application.interfaces.IUserService;
+import web_application.interfaces.IMemberService;
 import web_application.model.Member;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ import java.util.List;
 public class MemberController {
 
     @Autowired
-    IUserService logic;
+    IMemberService logic;
 
     @GetMapping("/welcome")
     @ResponseBody
