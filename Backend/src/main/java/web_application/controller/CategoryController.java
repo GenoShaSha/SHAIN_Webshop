@@ -48,9 +48,6 @@ public class CategoryController {
     @PostMapping()
     //POST at http://localhost:XXXX/category/
     public ResponseEntity<Category> createCategory(@RequestBody Category category) {
-        System.out.println(category.getCatCode());
-        System.out.println(category.getName());
-
         logic.AddCategory(category);
         return new ResponseEntity(HttpStatus.CREATED);
     }
