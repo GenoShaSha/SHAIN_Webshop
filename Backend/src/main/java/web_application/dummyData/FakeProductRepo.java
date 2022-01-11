@@ -37,9 +37,8 @@ public class FakeProductRepo implements IProductRepo {
             if(p.getCategory().getGender().equals(gender) && p.getCategory().getName().equals(name)){
                 temp.add(p);
             }
-            return temp;
         }
-        return null;
+        return temp;
     }
 
     @Override
