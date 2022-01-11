@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch } from 'react-router';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import '../css/category.css'
+import axios from 'axios';
 
 export default class AddCategory extends React.Component {
     constructor(props) {
