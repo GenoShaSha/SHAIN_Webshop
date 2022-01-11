@@ -46,7 +46,7 @@ class ShowProduct extends Component {
             <CardBody>
               <CardTitle>Name :{product.productName}</CardTitle>
               <CardSubtitle>Size :{product.size}</CardSubtitle>
-              <CardSubtitle>Price :{product.price}</CardSubtitle>
+              <CardSubtitle>Price :€{product.price}</CardSubtitle>
               <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
               <Button style={{marginRight:"10px"}} onClick={()=> addCart(product.id)}>CART</Button>
               <Button style={{marginRight:"10px"}} onClick={()=> addToWishlist(product.id)}> WISHLIST</Button>

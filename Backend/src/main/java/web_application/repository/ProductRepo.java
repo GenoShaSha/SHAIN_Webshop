@@ -40,4 +40,5 @@ public class ProductRepo implements IProductRepo {
     public Product getProductsByArticleNumber(int newArtNumb) {
         return repo.getProductsByArticleNumber(newArtNumb);
     }
+
 }

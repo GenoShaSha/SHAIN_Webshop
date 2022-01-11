@@ -43,6 +43,17 @@ public class Product{
         this.url = url;
     }
 
+    public Product(int articleNumber, String productName, Category category, String size, int qty, double price, String url, int count) {
+        this.articleNumber = articleNumber;
+        this.productName = productName;
+        this.category = category;
+        this.size = size;
+        this.qty = qty;
+        this.price = price;
+        this.url = url;
+        this.count = count;
+    }
+
     public String getSize() {
         return size;
     }

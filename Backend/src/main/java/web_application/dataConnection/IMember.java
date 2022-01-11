@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface IMember extends JpaRepository<Member,Long> {
     Optional<Member> getMemberByUsername(String username);
+    Member getAMemberByUsername(String username);
 }

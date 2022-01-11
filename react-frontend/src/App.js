@@ -14,6 +14,7 @@ import UpdateMember from './components/UpdateMember';
 import Cart from './components/Cart';
 import { DataProvider } from './components/CartActions';
 import Wishlist from './components/Wishlist';
+import Order from './components/Order';
 
 function App() {
   return (
@@ -35,6 +36,8 @@ function App() {
                 <Route path="/:username" exact component={UpdateMember}></Route>
                 <Route path="/Product/s/Cart" exact component={Cart}></Route>
                 <Route path="/Product/s/Wishlist" exact component={Wishlist}></Route>
+                <Route path="/Product/s/Order" exact component={Order}></Route>
+
               </Switch>
             </div>
           </Router>

@@ -6,6 +6,7 @@ import web_application.interfaces.IProductRepo;
 import web_application.interfaces.IProductService;
 import web_application.model.Product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -23,7 +24,7 @@ public class ProductService implements IProductService {
 
     @Override
     public List<Product> GetAllProduct() {
-        return repo.GetAllProduct();
+      return repo.GetAllProduct();
     }
 
     @Override
@@ -33,7 +34,14 @@ public class ProductService implements IProductService {
 
     @Override
     public List<Product> getProductsByCategory_GenderAnAndCategory_Name(String gender, String name) {
-        return repo.getProductsByCategory_GenderAnAndCategory_Name(gender,name);
+        ArrayList<Product> newItems = new ArrayList<>();
+        for (Product p : repo.getProductsByCategory_GenderAnAndCategory_Name(gender,name)) {
+            if (p.getQty()!=0){
+                p.setQty(-1);
+                newItems.add(p);
+            }
+        }
+        return newItems;
     }
 
     @Override

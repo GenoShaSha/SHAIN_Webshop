@@ -13,9 +13,9 @@ class Wishlist extends Component {
 
 if(wishlist.length === 0){
     return(
-        <div className="noProducts">
+        <div className="noProducts" style={{ textAlign: "center" }}>
             <h2>
-            No Product in the WISHLIST, you can add some product!
+            No Products found in your WISHLIST, you can add some products!
             </h2>
         </div>
     )
@@ -33,7 +33,7 @@ else{
               <CardBody>
                 <CardTitle>Name :{product.productName}</CardTitle>
                 <CardSubtitle>Size :{product.size}</CardSubtitle>
-                <CardSubtitle>Price :{product.price}</CardSubtitle>
+                <CardSubtitle>Price :€{product.price}</CardSubtitle>
                 <Button style={{marginRight:"10px"}} onClick={()=> MoveToCart(product.id)}> ADD TO CART</Button>
                 <Button style={{marginRight:"10px"}} onClick={()=> wishlistRemoveProduct(product.id)}> REMOVE FROM WISHLIST</Button>
               </CardBody>

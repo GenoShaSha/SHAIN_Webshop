@@ -102,15 +102,11 @@ class HeaderComponent extends Component {
               </UncontrolledDropdown>
 
               <NavItem>
-                <NavLink href="/Product/s/Wishlist">
-                  WISHLIST
-                </NavLink>
+                <NavLink href="/Product/s/Wishlist">WISHLIST</NavLink>
               </NavItem>
 
               <NavItem>
-                <NavLink href="/Product/s/Cart">
-                  CART
-                </NavLink>
+                <NavLink href="/Product/s/Cart">CART</NavLink>
               </NavItem>
 
               {this.state.role == "ADMIN" ? (
@@ -148,6 +144,7 @@ class HeaderComponent extends Component {
                   </DropdownMenu>
                 </UncontrolledDropdown>
               )}
+
               {this.state.role != null ? (
                 <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav caret className="profile">
@@ -158,8 +155,10 @@ class HeaderComponent extends Component {
                       My Profile
                     </DropdownItem>
                     <DropdownItem href="/SignOut">LOGOUT</DropdownItem>
+                    <DropdownItem href="/Product/s/Order">MY ORDER</DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
+                
               ) : (
                 ""
               )}

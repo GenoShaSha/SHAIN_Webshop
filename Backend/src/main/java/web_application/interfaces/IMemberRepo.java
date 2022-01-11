@@ -1,5 +1,6 @@
 package web_application.interfaces;
 
+import web_application.model.Category;
 import web_application.model.Member;
 
 import java.util.List;
@@ -10,8 +11,9 @@ public interface IMemberRepo {
     void AddMember(Member m);
     List<Member> GetAllMembers();
     void RemoveMember(Member m);
-    Member UpdateMember(Member m);
     Optional<Member> getMemberByUsername(String username);
+    Member getAMemberByUsername(String username);
+
 
 
 }

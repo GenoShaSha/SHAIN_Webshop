@@ -166,7 +166,7 @@ export default class AddProduct extends React.Component {
           />
         </FormGroup>
         <FormGroup>
-          <Label for="price">Price:</Label>
+          <Label for="price">Price: €</Label>
           <Input
             type="price"
             name="price"

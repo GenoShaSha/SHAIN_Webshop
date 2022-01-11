@@ -40,19 +40,7 @@ public class MemberController {
     }
     @PutMapping("/{username}")
     public ResponseEntity<String> updateMember(@PathVariable String username, @RequestBody Member member){
-        BCryptPasswordEncoder code = new BCryptPasswordEncoder();
-        Member m = logic.getMemberByUsername(username);
-        m.setFirstName(member.getFirstName());
-        m.setLastName(member.getLastName());
-        m.setBirthDate(member.getBirthDate());
-        m.setEmail(member.getEmail());
-        m.setPhoneNumb(member.getPhoneNumb());
-        m.setAddress(member.getAddress());
-        m.setCity(member.getCity());
-        m.setCountry(member.getCountry());
-        m.setPostalCode(member.getPostalCode());
-        m.setPassword(code.encode(member.getPassword()));
-        logic.UpdateMember(m);
+        logic.UpdateMember(member,username);
         return ResponseEntity.ok().body("updated");
     }
     @PutMapping("/updateRole/{username}")
@@ -64,13 +52,12 @@ public class MemberController {
         else {
             m.setRole("USER");
         }
-        logic.UpdateMember(m);
+        logic.UpdateMember(m,username);
         return ResponseEntity.ok().body("updated");
     }
     @GetMapping("/{username}")
     public ResponseEntity<Member> getMemberbyUsername(@PathVariable String username){
         Member m = logic.getMemberByUsername(username);
-        Member update = logic.UpdateMember(m);
-        return ResponseEntity.ok().body(update);
+        return ResponseEntity.ok().body(m);
     }
 }

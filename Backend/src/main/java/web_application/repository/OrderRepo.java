@@ -20,15 +20,15 @@ public class OrderRepo implements IOrderRepo {
     }
 
     @Override
+    public List<Order> getOrdersByUsername(String username) {
+        return repo.getOrdersByUsername(username);
+    }
+
+    @Override
     public Order getOrderByOrderReference(String reference) {
         return repo.getOrderByOrderReference(reference);
     }
 
-
-    @Override
-    public Order getOrderByUsername(String username) {
-        return repo.getOrderByUsername(username);
-    }
 
     @Override
     public List<Order> GetAllOrder() {

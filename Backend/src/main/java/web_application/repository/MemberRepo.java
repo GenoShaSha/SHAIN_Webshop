@@ -29,13 +29,13 @@ public class MemberRepo implements IMemberRepo {
     }
 
     @Override
-    public Member UpdateMember(Member m) {
-        return repo.save(m);
+    public Optional<Member> getMemberByUsername(String username) {
+       return repo.getMemberByUsername(username);
     }
 
     @Override
-    public Optional<Member> getMemberByUsername(String username) {
-       return repo.getMemberByUsername(username);
+    public Member getAMemberByUsername(String username) {
+        return repo.getAMemberByUsername(username);
     }
 }
 

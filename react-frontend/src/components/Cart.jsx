@@ -1,13 +1,41 @@
 import React, { Component } from 'react'
 import {DataContext} from './CartActions'
-import {Link} from 'react-router-dom'
+import { Card, CardImg, CardBody,
+  CardTitle, CardSubtitle, Button } from 'reactstrap';
+import jwtDecode from 'jwt-decode'
+import axios from 'axios'
 import "../css/Cart.css"
 
 export class Cart extends Component {
   static contextType = DataContext;  
-  
+
   componentDidMount() {
-      this.context.getTotal();      
+    this.context.getTotal();
+}
+
+
+completeOrder(){
+    var CartItems = localStorage.getItem("dataCart");
+    var CartTotal = localStorage.getItem("dataTotal");
+    var tUsername = null;
+
+    const token = localStorage.getItem("token");
+    if (token != null) {
+      const translator = jwtDecode(token);
+      tUsername = translator.sub;
+    }
+    var items = JSON.parse(CartItems)
+
+    axios
+      .post("http://localhost:8080/order",{ totalPrice:CartTotal, username:tUsername, products:items})
+      .then((response) => {
+        console.log(response.data);
+        localStorage.removeItem("dataCart");
+        localStorage.removeItem("dataTotal");
+
+        window.location.href = "/Product/s/Order";
+      });
+
 }
 
   render() {
@@ -15,42 +43,45 @@ export class Cart extends Component {
     if (cart.length === 0) {
       return (
         <h2 className={`NoProducts`} style={{ textAlign: "center" }}>
-          No products in cart
+          No products found in your CART, you can add some products!
         </h2>
       );
     } else {
       return (
-        <>
-          {cart.map((item) => (
-            <div className="details cart" key={item.id}>
-              <div className="delete" onClick={() => removeProduct(item._id)}>
-                X
-              </div>
-              <img class="CartImg" src={item.url} alt="" />
-              <div className="box">
-                <div className="row">
-                  <h2>{item.name}</h2>
-                  <span>${item.price * item.count}</span>
-                </div>
-                <div className="amount">
-                  <button className="count" onClick={() => reduction(item.id)}>
-                    {" "}
-                    -{" "}
-                  </button>
-                  <span>{item.count}</span>
-                  <button className="count" onClick={() => increase(item.id)}>
-                    {" "}
-                    +{" "}
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-          <div className="total">
-            <Link to="/payment">Payment</Link>
-            <h3>Total: ${total}</h3>
+        <div>
+        <div className="cart">
+          <label htmlFor="cart" style={{fontSize:"50px"}}>MY CART</label>
+        <div className="grid-container">
+            {cart.map((product) => (   
+          <div>
+            <div className="wrapper">
+              <Card>
+              <CardImg src={product.url} alt="Card image cap" />
+              <CardBody>
+                <CardTitle>Name :{product.productName}</CardTitle>
+                <CardSubtitle>Size :{product.size}</CardSubtitle>
+                <CardSubtitle>Single item price :€{product.price}</CardSubtitle>
+                <CardSubtitle>Total product Price :€{product.price * product.count}</CardSubtitle>
+                <Button style={{marginRight:"10px"}} onClick={()=> increase(product.id)}>{" "} + {" "}</Button>
+                <span>{product.count}</span>
+                <Button style={{marginRight:"10px"}} onClick={()=> reduction(product.id)}>{" "} - {" "}</Button>
+                <br></br>
+                <br></br>
+                <Button style={{marginRight:"10px"}} onClick={()=> removeProduct(product.id)}>REMOVE FROM CART</Button>
+              </CardBody>
+            </Card>
+            <br></br>
           </div>
-        </>
+          </div>
+          ))}
+        </div>
+        <Button onClick={this.completeOrder.bind(this)} style={{ marginLeft: "10px" }}>
+          COMPLETE OEDER
+        </Button>
+       </div>
+        <h2 className='totalPrice'>Total Price :€{total}</h2>
+        <br></br>
+        </div>
       );
     }
   }

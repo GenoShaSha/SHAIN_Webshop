@@ -4,8 +4,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import web_application.model.Order;
 import web_application.model.Product;
 
+import java.util.List;
+
 public interface IOrder extends JpaRepository<Order,Long> {
-    Order getOrderByUsername(String username);
+    List<Order> getOrdersByUsername(String username);
     Order getOrderByOrderReference(String reference);
 }
 

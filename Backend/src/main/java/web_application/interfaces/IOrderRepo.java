@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IOrderRepo {
     void AddOrder(Order order);
-    Order getOrderByUsername(String username);
+    List<Order> getOrdersByUsername(String username);
     Order getOrderByOrderReference(String reference);
     List<Order> GetAllOrder();
 }

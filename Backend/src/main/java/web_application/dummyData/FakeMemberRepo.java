@@ -32,28 +32,6 @@ public class FakeMemberRepo implements IMemberRepo {
     }
 
     @Override
-    public Member UpdateMember(Member m) {
-        BCryptPasswordEncoder code = new BCryptPasswordEncoder();
-        for(Member memb : FakeMembers){
-            if(memb.getUsername().equals(m.getUsername())){
-                memb.setFirstName(m.getFirstName());
-                memb.setLastName(m.getLastName());
-                memb.setBirthDate(m.getBirthDate());
-                memb.setEmail(m.getEmail());
-                memb.setPhoneNumb(m.getPhoneNumb());
-                memb.setAddress(m.getAddress());
-                memb.setCity(m.getCity());
-                memb.setCountry(m.getCountry());
-                memb.setPostalCode(m.getPostalCode());
-                memb.setPassword(code.encode(m.getPassword()));
-                FakeMembers.add(memb);
-                return memb;
-            }
-        }
-        return null;
-    }
-
-    @Override
     public Optional<Member> getMemberByUsername(String username) {
         for(Member m : FakeMembers){
            if(m.getUsername().equals(username)){
@@ -62,4 +40,13 @@ public class FakeMemberRepo implements IMemberRepo {
         }
         return Optional.empty();
     }
+
+    @Override
+    public Member getAMemberByUsername(String username) {
+        for(Member m : FakeMembers){
+            if(m.getUsername().equals(username)){
+                return m;
+            }
+        }
+        return null;    }
 }

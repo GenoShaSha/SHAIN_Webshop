@@ -11,7 +11,7 @@ public interface IMemberService {
     public void registerMember(UserCreateRequest userCreateRequest);
     List<Member> GetAllMembers();
     void RemoveMember(Member m);
-    Member UpdateMember(Member m);
+    void UpdateMember(Member m, String username);
     Member getMemberByUsername(String username);
 
 }

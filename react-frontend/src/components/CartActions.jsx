@@ -65,21 +65,14 @@ export class DataProvider extends Component {
     const { cart } = this.state;
     cart.forEach((item) => {
       if (item.id === id) {
-        item.count === 1 ? (item.count = 1) : (item.count -= 1);
+        if(item.count>0){
+          item.count === 1 ? (item.count = 1) : (item.count -= 1);
+        }
       }
     });
     this.setState({ cart: cart });
     this.getTotal();
   };
-//   wishlistReduceProduct = (id) => {
-//     const { wishlist } = this.state;
-//     wishlist.forEach((item) => {
-//       if (item.id === id) {
-//         item.count === 1 ? (item.count = 1) : (item.count -= 1);
-//       }
-//     });
-//     this.setState({ wishlist: wishlist });
-//   };
 
 
   increase = (id) => {
@@ -92,22 +85,13 @@ export class DataProvider extends Component {
     this.setState({ cart: cart });
     this.getTotal();
   };
-//   wishlistIncreaseProduct = (id) => {
-//     const { wishlist } = this.state;
-//     wishlist.forEach((item) => {
-//       if (item.id === id) {
-//         item.count += 1;
-//       }
-//     });
-//     this.setState({ wishlist: wishlist });
-//   };
 
 
   removeProduct = (id) => {
     if (window.confirm("Do you want to delete this product?")) {
       const { cart } = this.state;
       cart.forEach((item, index) => {
-        if (item._id === id) {
+        if (item.id === id) {
           item.count = 1;
           cart.splice(index, 1);
         }
@@ -164,13 +148,12 @@ export class DataProvider extends Component {
       });
       console.log(response.data);
     });
-    this.getTotal();
+
   }
 
   render() {
-    const { products, cart, wishlist, total } = this.state;
-    const { addCart, reduction, increase, removeProduct, getTotal } = this;
-    const { addToWishlist, wishlistRemoveProduct,MoveToCart} = this;
+    const { products, cart, total,wishlist  } = this.state;
+    const { addCart, reduction, increase, removeProduct, getTotal, addToWishlist, wishlistRemoveProduct,MoveToCart} = this;
     return (
       <DataContext.Provider
         value={{
