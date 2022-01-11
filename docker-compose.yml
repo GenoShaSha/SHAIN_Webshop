@@ -9,15 +9,3 @@ services:
     build: ./Backend/
     ports:
       - "9090:8000"
-#  database:
-#    image: "jdbc:mysql"
-#    environment: 
-#      MYSQL_ROOT_PASSWORD: "2006"
-#      MYSQL_ROOT_USERNAME: "root"
-#    volumes:
-#      - db-data:/ven
-#    ports:
-#      - "3306:3306"
-  
-#  volumes:
-#    db-data:
