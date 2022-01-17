@@ -23,9 +23,12 @@ class SignUp extends Component {
         let member = { username: this.state.username,email: this.state.email,  password: this.state.password , role : "USER"};
         axios.post('http://localhost:8080/member', member)
         .then(response => {
-            console.log(response)
-        })    
-        window.location.href = '/SignIn';
+            console.log(response)        
+            window.location.href = '/SignIn';
+        },(error) => {
+            console.log(error);
+            this.setState({errorMessage: "Username already taken!"});
+          });    
 
     }
 
@@ -69,7 +72,10 @@ class SignUp extends Component {
                                     </div>
                                     <br></br>
                                     <button name="btn" className="btn btn-success" onClick={this.saveMember}>SIGN UP</button>
+                                    <br></br>
+                                    { <p className="error"> { this.state.errorMessage }  </p> }
                                 </form>
+
                             </div>
                         </div>
                     </div>

@@ -9,9 +9,13 @@ import web_application.model.Announcement;
 
 @Controller
 public class ChatController {
+
+
+
     @MessageMapping("/send")
     @SendTo("/topic/announcement")
     public AnnouncementMessage sendMessage(Announcement announcement) throws Exception{
+        
         return new AnnouncementMessage(HtmlUtils.htmlEscape( " - " +" Attention: "+ announcement.getContent()));
     }
 }

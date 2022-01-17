@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import SockJS from "sockjs-client";
 import Stomp from "stompjs";
+import { Card, CardImg, CardBody,
+    CardTitle, CardText} from 'reactstrap';
+  
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 
 // Set the backend location
@@ -39,17 +42,31 @@ function Announcement() {
   // display the received data
   function onMessageReceived(data) {
     const result = JSON.parse(data.body);
-    alert(result.message);
     console.log(result.message);
-    readTheMsg.log(result.message);
+    setReadMessage(readTheMsg => [...readTheMsg, result.message])
   }
 
   //TODO, add a solution for disconnection
 
   return (
-    <Form>
-      <FormGroup>
-        <Label for="newAnnouncement">NEW ANNOUNCEMENT: </Label>
+<div>
+{readTheMsg.map(message => (   
+        <div>
+          <div className="wrapper">
+            <Card>
+            <CardImg src={"https://buildingsmart-1xbd3ajdayi.netdna-ssl.com/wp-content/uploads/2020/03/feat_important-.jpg"} alt="Card image cap" />
+            <CardBody>
+              <CardTitle>ANNOUNCEMENT!</CardTitle>
+              <CardText>{message}</CardText>
+            </CardBody>
+          </Card>
+          <br></br>
+        </div>
+        </div>
+        ))}
+<Form>
+<FormGroup>
+<Label for="newAnnouncement">NEW ANNOUNCEMENT: </Label>
         <Input
           type="announcement"
           name="announcement"
@@ -57,9 +74,12 @@ function Announcement() {
           placeholder=""
           onChange={(event) => setSendMessage(event.target.value)}
         />
-      </FormGroup>
+        <br></br>
       <Button onClick={sendMessage}>POST ANNOUNCEMENT</Button>
-    </Form>
+      </FormGroup>
+      </Form>
+
+    </div>
   );
 }
 

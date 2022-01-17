@@ -9,6 +9,7 @@ class SignIn extends Component {
         this.state = {         
             username: '',
             password: '',
+            errorMessage : ''
         }
         this.changeUsernameHandler = this.changeUsernameHandler.bind(this);
         this.changePasswordHandler = this.changePasswordHandler.bind(this);
