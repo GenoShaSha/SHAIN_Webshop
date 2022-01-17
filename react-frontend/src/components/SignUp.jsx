@@ -68,7 +68,7 @@ class SignUp extends Component {
                                             value={this.state.password} onChange={this.changePasswordHandler} />
                                     </div>
                                     <br></br>
-                                    <button className="btn btn-success" onClick={this.saveMember}>SIGN UP</button>
+                                    <button name="btn" className="btn btn-success" onClick={this.saveMember}>SIGN UP</button>
                                 </form>
                             </div>
                         </div>

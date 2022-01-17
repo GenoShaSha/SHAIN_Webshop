@@ -64,7 +64,7 @@ class SignIn extends Component {
                                             value={this.state.password} onChange={this.changePasswordHandler} />
                                     </div>
                                     <br></br>
-                                    <button className="btn btn-success" onClick={this.hndlSubmit}>SIGN IN</button>
+                                    <button name = "btn" className="btn btn-success" onClick={this.hndlSubmit}>SIGN IN</button>
                                 </form>
                             </div>
                             { this.state.errorMessage && <p className="error"> { "please put the right username or password!" }  </p> }

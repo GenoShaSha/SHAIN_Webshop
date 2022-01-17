@@ -8,13 +8,13 @@ import SignIn from './components/SignIn';
 import SignOut from './components/SignOut';
 import AddProduct from './components/AddProduct';
 import SignUp from './components/SignUp';
-import UpdateCategory from './components/UpdateCategory';
 import ShowProduct from './components/ShowProduct';
 import UpdateMember from './components/UpdateMember';
 import Cart from './components/Cart';
 import { DataProvider } from './components/CartActions';
 import Wishlist from './components/Wishlist';
 import Order from './components/Order';
+import Announcement from './components/Announcement';
 
 function App() {
   return (
@@ -37,7 +37,7 @@ function App() {
                 <Route path="/Product/s/Cart" exact component={Cart}></Route>
                 <Route path="/Product/s/Wishlist" exact component={Wishlist}></Route>
                 <Route path="/Product/s/Order" exact component={Order}></Route>
-
+                <Route path="/Product/new/Announcement" exact component={Announcement}></Route>
               </Switch>
             </div>
           </Router>
