@@ -12,6 +12,7 @@ import web_application.interfaces.IProductRepo;
 import web_application.interfaces.IProductService;
 import web_application.model.Order;
 import web_application.model.Product;
+import web_application.model.ProductOrderAmount;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,16 +33,24 @@ public class OrderService implements IOrderService {
     public boolean AddOrder(Order order) {
 
         List<Product> listOfProduct = order.getProducts();
+        List<Product> listOfProductsToOrder = new ArrayList<>();
         List<Product> unavailableProd = new ArrayList<>();
+        List<ProductOrderAmount> listOfProductAmount = new ArrayList<>();
 
+        double price = order.getTotalPrice();
 
 
         for (Product p : listOfProduct) {
-            if (p.getCount() > p.getQty()) {
+            Product item = prodLogic.getProductsByArticleNumber(p.getArticleNumber());
+            if (item.getQty() < p.getCount() && item.getQty() >= 1 ){
+                p.setCount(p.getQty());
+            }
+            if (item.getQty() < 1) {
                 unavailableProd.add(p);
-            } else {
-                int newQuantity = prodLogic.getProductsByArticleNumber(p.getArticleNumber()).getQty() - p.getCount();
-                p.setCount(1);
+            }
+            if (item.getQty() >= p.getCount() && item.getQty() >= 1 ) {
+                int newQuantity = item.getQty() - p.getCount();
+                listOfProductsToOrder.add(p);
                 p.setQty(newQuantity);
                 prodLogic.AddProduct(p);
             }
@@ -51,9 +60,18 @@ public class OrderService implements IOrderService {
             return false;
         }
         else {
+            for (Product p: listOfProductsToOrder) {
+                listOfProductAmount.add(new ProductOrderAmount(p,p.getCount()));
+            }
             String random = RandomString.make(5);
-            Order newOrder = new Order(order.getTotalPrice(),order.getUsername(),listOfProduct,random);
+            Order newOrder = new Order(order.getTotalPrice(),order.getUsername(),random,listOfProductAmount,order.getAddress());
+
             repo.AddOrder(newOrder);
+
+            for (Product p: listOfProductsToOrder) {
+                p.setCount(1);
+                prodLogic.AddProduct(p);
+            }
             return true;
         }
     }

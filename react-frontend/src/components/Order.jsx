@@ -41,6 +41,7 @@ class Order extends Component {
         this.setState({
           orders: response.data,
         });
+        console.log(response.data)
       });
     }
   }
@@ -70,16 +71,18 @@ class Order extends Component {
                       style={{ fontWeight: "bolder" }}
                     >
                     Order Reference: {order.orderReference}
-                    </CardTitle>
+                    </CardTitle> <h4>To be delivered to : {order.address} </h4>
                     <CardSubtitle></CardSubtitle>
-                    {order.products.map((product) => (
+                    {order.productAmount.map((products) => (
                       <div>
                         <div className="wrapper">
                           <Card>
-                            <CardImg src={product.url} alt="Card image cap" />
+                            <CardImg src={products.product.url} alt="Card image cap" />
                             <CardBody>
-                              <CardTitle>Name :{product.productName}</CardTitle>
-                              <CardSubtitle>Size :{product.size}</CardSubtitle>
+                              <CardTitle>Name :{products.product.productName}</CardTitle>
+                              <CardSubtitle>Size :{products.product.size}</CardSubtitle>
+                              <CardSubtitle>Ordered - {products.amount} times</CardSubtitle>
+
                             </CardBody>
                           </Card>
                           <br></br>

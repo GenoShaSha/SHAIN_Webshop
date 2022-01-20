@@ -2,6 +2,7 @@ package web_application.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import web_application.interfaces.IProductService;
+import web_application.model.Member;
 import web_application.model.Product;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,14 @@ public class ProductController {
     public ResponseEntity<List<Product>> getAllProducts() {
         return ResponseEntity.ok().body(logic.GetAllProduct());
     }
+
+    @GetMapping("/{artNumb}")
+    public ResponseEntity<Product> getProductByArtNumb(@PathVariable int artNumb){
+        Product p = logic.getProductsByArticleNumber(artNumb);
+        return ResponseEntity.ok().body(p);
+    }
+
+
     @GetMapping("/{CatGender}/{CatName}")
     public ResponseEntity<List<Product>> getProductPath(@PathVariable(value = "CatGender") String gender,@PathVariable(value = "CatName") String name) {
         List<Product> temp = logic.getProductsByCategory_GenderAnAndCategory_Name(gender,name);
@@ -31,15 +40,29 @@ public class ProductController {
     @PostMapping()
     public ResponseEntity createProduct(@RequestBody Product product) {
 
-        if (logic.getProductsByArticleNumber(product.getArticleNumber())!= null){
-            String entity =  "This product already exists.";
-            return new ResponseEntity(entity, HttpStatus.CONFLICT);
-        } else {
-            product.setCount(1);
-            logic.AddProduct(product);
-            String url = "product" + "/" + product.getArticleNumber();
-            URI uri = URI.create(url);
-            return new ResponseEntity(uri,HttpStatus.CREATED);
+        try{
+            if (logic.getProductsByArticleNumber(product.getArticleNumber())!= null){
+                String entity =  "This product already exists.";
+                return new ResponseEntity(entity, HttpStatus.CONFLICT);
+            } else {
+                product.setCount(1);
+                logic.AddProduct(product);
+                return new ResponseEntity(HttpStatus.CREATED);
+            }
+        }
+        catch (Exception e){
+            return ResponseEntity.ok(HttpStatus.CONFLICT);
+        }
+    }
+
+    @PutMapping("/{artNumber}")
+    public ResponseEntity<String> updateProdQty(@PathVariable int artNumber, @RequestBody Product product){
+        try{
+            logic.UpdateProduct(product,artNumber);
+            return ResponseEntity.ok().body("updated");
+        }
+        catch(Exception e){
+            return new ResponseEntity(HttpStatus.CONFLICT);
         }
     }
 

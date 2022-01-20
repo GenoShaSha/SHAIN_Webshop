@@ -5,8 +5,15 @@ import { Card, CardImg, CardBody,
 import jwtDecode from 'jwt-decode'
 import axios from 'axios'
 import "../css/Cart.css"
+import { Label, Input } from "reactstrap";
 
 export class Cart extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      address: ""
+    };
+  }
   static contextType = DataContext;  
 
   componentDidMount() {
@@ -26,14 +33,17 @@ completeOrder(){
     }
     var items = JSON.parse(CartItems)
 
+    console.log(items);
+    var adder = this.state.address;
+    console.log(adder);
+
     axios
-      .post("http://localhost:8080/order",{ totalPrice:CartTotal, username:tUsername, products:items})
+      .post("http://localhost:8080/order",{ totalPrice:CartTotal, username:tUsername, products:items,address : adder})
       .then((response) => {
         console.log(response.data);
         localStorage.removeItem("dataCart");
         localStorage.removeItem("dataTotal");
-
-        window.location.href = "/Product/s/Order";
+        alert("The order has been process!")
       });
 
 }
@@ -75,6 +85,17 @@ completeOrder(){
           </div>
           ))}
         </div>
+        <Label for="CatName">Address:</Label>
+        <Input
+            type="name"
+            name="name"
+            id="Name"
+            placeholder="Address"
+            value={this.state.address}
+            onChange={(event) => this.setState({address : event.target.value})}
+          />
+        <br></br>
+
         <Button onClick={this.completeOrder.bind(this)} style={{ marginLeft: "10px" }}>
           COMPLETE OEDER
         </Button>

@@ -102,11 +102,11 @@ class HeaderComponent extends Component {
               </UncontrolledDropdown>
 
               <NavItem>
-                <NavLink href="/Product/s/Wishlist">WISHLIST</NavLink>
+                <NavLink href="/Product/User/Wishlist">WISHLIST</NavLink>
               </NavItem>
 
               <NavItem>
-                <NavLink href="/Product/s/Cart">CART</NavLink>
+                <NavLink href="/Product/User/Cart">CART</NavLink>
               </NavItem>
 
               {this.state.role == "ADMIN" ? (
@@ -125,7 +125,16 @@ class HeaderComponent extends Component {
               )}
               {this.state.role == "ADMIN" ? (
                 <NavItem>
-                  <NavLink href="/AddProduct">CREATE PRODUCT</NavLink>
+                  <NavLink href="/ListOfProduct">LIST OF PRODUCT</NavLink>
+                </NavItem>
+              ) : (
+                ""
+              )}
+              {this.state.role == "ADMIN" ? (
+                <NavItem>
+                  <NavLink href="/Product/new/Announcement">
+                    ANNOUNCEMENT
+                  </NavLink>
                 </NavItem>
               ) : (
                 ""
@@ -155,10 +164,11 @@ class HeaderComponent extends Component {
                       My Profile
                     </DropdownItem>
                     <DropdownItem href="/SignOut">LOGOUT</DropdownItem>
-                    <DropdownItem href="/Product/s/Order">MY ORDER</DropdownItem>
+                    <DropdownItem href="/Product/User/Order">
+                      MY ORDER
+                    </DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
-                
               ) : (
                 ""
               )}

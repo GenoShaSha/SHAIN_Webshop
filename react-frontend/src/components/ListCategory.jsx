@@ -12,7 +12,7 @@ class ListCategory extends Component {
         this.state = {
             categories: []
         }
-        this.editCat = this.editCat.bind(this);
+        // this.editCat = this.editCat.bind(this);
     }
     componentDidMount(){
       axios.get("http://localhost:8080/category").then((response)=>{
@@ -20,9 +20,9 @@ class ListCategory extends Component {
         });
     }
 
-    editCat(id){
-      this.props.history.push(`/UpdateCategory/${id}`);
-    }
+    // editCat(id){
+    //   this.props.history.push(`/UpdateCategory/${id}`);
+    // }
 
     addCat() {
       this.props.history.push('/category');
@@ -40,7 +40,6 @@ class ListCategory extends Component {
               <th>Code</th>
               <th>Gender</th>
               <th>Name</th> 
-              <th>Actions</th>                              
             </tr>
           </thead>
           <tbody>
@@ -52,9 +51,7 @@ class ListCategory extends Component {
                   <td>{category.catCode}</td>
                   <td>{category.gender}</td>
                   <td>{category.name}</td>
-                  <td>
-                    <button onClick = {()=> this.editCat(category.id)} className="updateButton">Update</button>
-                  </td>
+                
                 </tr>
               )
             }

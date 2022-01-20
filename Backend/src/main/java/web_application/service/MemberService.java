@@ -31,7 +31,7 @@ public class MemberService implements IMemberService {
         user.setUsername(userCreateRequest.getUsername());
         user.setEmail(userCreateRequest.getEmail());
         user.setPassword(passwordEncoder.encode(userCreateRequest.getPassword()));
-        user.setRole("USER");
+        user.setRole(userCreateRequest.getRole());
         repo.AddMember(user);
     }
 

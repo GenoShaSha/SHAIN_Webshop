@@ -43,9 +43,9 @@ public class orderMockTest {
 
 
 
-        orderService.AddOrder(new Order(45, "STANISLAV",products));
+        orderService.AddOrder(new Order(45, "STANISLAV",products,"s"));
 
-        orderService.AddOrder(new Order(45, "STANISLAV",products));
+        orderService.AddOrder(new Order(45, "STANISLAV",products,"s"));
 
         List<Order> test = orderService.getOrdersByUsername("STANISLAV");
 
@@ -57,7 +57,7 @@ public class orderMockTest {
         products2.add(product3);
         service.AddProduct(product3);
 
-        orderService.AddOrder(new Order(45, "STANISLAV",products2));
+        orderService.AddOrder(new Order(45, "STANISLAV",products2,"s"));
 
         List<Order> test2 = orderService.getOrdersByUsername("STANISLAV");
 

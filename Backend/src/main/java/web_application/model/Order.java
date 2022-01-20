@@ -16,18 +16,22 @@ public class Order {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String orderReference;
-    @ManyToMany
-    @JoinColumn(name = "product_id", nullable = false)
+    @Transient
     private List<Product> products;
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name = "productAmount_id", nullable = false)
+    private List<ProductOrderAmount> productAmount;
+    private String address;
 
     public Order(){
 
     }
 
-    public Order(int totalPrice, String username, List<Product> products) {
+    public Order(int totalPrice, String username, List<Product> products,String address) {
         this.totalPrice = totalPrice;
         this.username = username;
         this.products = products;
+        this.address = address;
     }
 
     public String getOrderReference() {
@@ -38,11 +42,12 @@ public class Order {
         this.orderReference = orderReference;
     }
 
-    public Order(int totalPrice, String username, List<Product> products, String orderReference){
+    public Order(int totalPrice, String username, String orderReference, List<ProductOrderAmount> productAmount,String address) {
         this.totalPrice = totalPrice;
         this.username = username;
-        this.products = products;
         this.orderReference = orderReference;
+        this.productAmount = productAmount;
+        this.address = address;
     }
 
     public Long getId() {
@@ -75,5 +80,21 @@ public class Order {
 
     public void setProducts(List<Product> products) {
         this.products = products;
+    }
+
+    public List<ProductOrderAmount> getProductAmount() {
+        return productAmount;
+    }
+
+    public void setProductAmount(List<ProductOrderAmount> productAmount) {
+        this.productAmount = productAmount;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

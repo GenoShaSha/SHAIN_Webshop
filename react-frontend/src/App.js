@@ -15,6 +15,8 @@ import { DataProvider } from './components/CartActions';
 import Wishlist from './components/Wishlist';
 import Order from './components/Order';
 import Announcement from './components/Announcement';
+import ListProduct from './components/ListProduct';
+import UpdateProductQty from './components/UpdateProductQty';
 
 function App() {
   return (
@@ -30,13 +32,15 @@ function App() {
                 <Route path="/:gender/:name" exact component={ShowProduct}></Route>
                 <Route path="/category" exact component={AddCategory}></Route>
                 <Route path="/ListOfCategory"exact component={ListCategory}></Route>
+                <Route path="/ListOfProduct"exact component={ListProduct}></Route>
                 <Route path="/SignIn" exact component={SignIn}></Route>
                 <Route path="/SignOut"exact component={SignOut}></Route>
                 <Route path="/AddProduct" exact component={AddProduct}></Route>
                 <Route path="/:username" exact component={UpdateMember}></Route>
-                <Route path="/Product/s/Cart" exact component={Cart}></Route>
-                <Route path="/Product/s/Wishlist" exact component={Wishlist}></Route>
-                <Route path="/Product/s/Order" exact component={Order}></Route>
+                <Route path="/Product/qty/:artNumb" exact component={UpdateProductQty}></Route>
+                <Route path="/Product/User/Cart" exact component={Cart}></Route>
+                <Route path="/Product/User/Wishlist" exact component={Wishlist}></Route>
+                <Route path="/Product/User/Order" exact component={Order}></Route>
                 <Route path="/Product/new/Announcement" exact component={Announcement}></Route>
               </Switch>
             </div>

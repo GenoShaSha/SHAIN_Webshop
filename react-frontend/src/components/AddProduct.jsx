@@ -1,5 +1,4 @@
 import React from "react";
-import { Switch } from "react-router";
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import "../css/category.css";
 import axios from "axios";
@@ -16,6 +15,7 @@ export default class AddProduct extends React.Component {
       price: "",
       category: "",
       url: "",
+      errorMessage: "",
     };
     this.changeArtNumbHandler = this.changeArtNumbHandler.bind(this);
     this.changeNameHandler = this.changeNameHandler.bind(this);
@@ -33,15 +33,23 @@ export default class AddProduct extends React.Component {
     const product = {
       articleNumber: this.state.artNumb,
       productName: this.state.name,
-      category : this.state.category,
+      category: this.state.category,
       size: this.state.size,
       qty: this.state.quantity,
       price: this.state.price,
       url: this.state.url,
     };
-    axios.post("http://localhost:8080/product", product).then((response) => {
-      console.log(response);
-    });
+    axios.post("http://localhost:8080/product", product).then(
+      (response) => {
+        console.log(response);
+        window.location.href = "/ListOfProduct";
+
+      },
+      (error) => {
+        console.log(error);
+        this.setState({ errorMessage: error.message });
+      }
+    );
   };
 
   componentDidMount() {
@@ -60,7 +68,7 @@ export default class AddProduct extends React.Component {
     this.setState({ name: event.target.value });
   };
   changeCategoryHandler = (event) => {
-    this.setState({ category: this.state.categories[event.target.value]});
+    this.setState({ category: this.state.categories[event.target.value] });
   };
   changeSizeHandler = (event) => {
     this.setState({ size: event.target.value });
@@ -78,7 +86,6 @@ export default class AddProduct extends React.Component {
   back() {
     this.props.history.push("/ListOfCategory");
   }
-
 
   render() {
     return (
@@ -113,14 +120,15 @@ export default class AddProduct extends React.Component {
             name="select"
             id="exampleSelect"
             value={this.state.categories[this.state.category]}
-            onChange={this.changeCategoryHandler}>
+            onChange={this.changeCategoryHandler}
+          >
             <option value="" select disabled>
               Select category
             </option>
             {this.state.categories.map((category, index) => (
-            <option value={index}>
-              {category.name} - Gender: {category.gender}
-            </option>
+              <option value={index}>
+                {category.name} - Gender: {category.gender}
+              </option>
             ))}
           </Input>
         </FormGroup>
@@ -135,7 +143,7 @@ export default class AddProduct extends React.Component {
             onChange={this.changeSizeHandler}
           />
         </FormGroup>
-        {/* <FormGroup>
+        <FormGroup>
           <Label for="quantity">URL:</Label>
           <Input
             type="url"
@@ -145,15 +153,15 @@ export default class AddProduct extends React.Component {
             value={this.state.url}
             onChange={this.changeUrlHandler}
           />
-        </FormGroup> */}
-        <FormGroup>
+        </FormGroup>
+        {/* <FormGroup>
           <Label for="exampleFile">Upload Picture</Label>
           <Input type="file" name="file" id="exampleFile" value={this.state.url} onChange={this.changeUrlHandler}/>
           <FormText color="muted">
             This is some placeholder block-level help text for the above input.
             It's a bit lighter and easily wraps to a new line.
           </FormText>
-        </FormGroup>
+        </FormGroup> */}
         <FormGroup>
           <Label for="quantity">Quantity:</Label>
           <Input
@@ -182,6 +190,12 @@ export default class AddProduct extends React.Component {
         <Button onClick={this.back.bind(this)} style={{ marginLeft: "10px" }}>
           Back
         </Button>
+        {this.state.errorMessage && (
+          <p className="error">
+            {" "}
+            {"Please use the right input on the fields!"}{" "}
+          </p>
+        )}
       </Form>
     );
   }

@@ -40,8 +40,13 @@ public class MemberController {
     }
     @PutMapping("/{username}")
     public ResponseEntity<String> updateMember(@PathVariable String username, @RequestBody Member member){
-        logic.UpdateMember(member,username);
-        return ResponseEntity.ok().body("updated");
+        try{
+            logic.UpdateMember(member,username);
+            return ResponseEntity.ok().body("updated");
+        }
+        catch(Exception e){
+            return new ResponseEntity(HttpStatus.CONFLICT);
+        }
     }
     @PutMapping("/updateRole/{username}")
     public ResponseEntity<String> updateRoleAdmin(@PathVariable String username){
