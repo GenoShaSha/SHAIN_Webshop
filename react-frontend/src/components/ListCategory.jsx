@@ -12,22 +12,16 @@ class ListCategory extends Component {
         this.state = {
             categories: []
         }
-        // this.editCat = this.editCat.bind(this);
     }
     componentDidMount(){
-      axios.get("http://localhost:8080/category").then((response)=>{
+      var tok = localStorage.getItem('token');
+      axios.get("http://localhost:8080/category",{headers: {"Authorization" : `${tok}`}}).then((response)=>{
            this.setState({categories: response.data}); 
         });
     }
 
-    // editCat(id){
-    //   this.props.history.push(`/UpdateCategory/${id}`);
-    // }
-
     addCat() {
       this.props.history.push('/category');
-      // window.location.href = '/category';
-
   }
 
     render() {

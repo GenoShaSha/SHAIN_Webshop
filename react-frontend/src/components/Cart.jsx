@@ -37,12 +37,14 @@ completeOrder(){
     var adder = this.state.address;
     console.log(adder);
 
+    const {emptyTheCart} = this.context
     axios
       .post("http://localhost:8080/order",{ totalPrice:CartTotal, username:tUsername, products:items,address : adder})
       .then((response) => {
         console.log(response.data);
         localStorage.removeItem("dataCart");
         localStorage.removeItem("dataTotal");
+        emptyTheCart();
         alert("The order has been process!")
       });
 

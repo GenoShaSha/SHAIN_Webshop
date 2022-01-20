@@ -1,4 +1,4 @@
-import axios from "axios";
+import Axios from "axios";
 import React, { Component, useEffect, useState } from "react";
 
 function UpdateMember(props) {
@@ -19,8 +19,8 @@ function UpdateMember(props) {
   const errorMessage = "";
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/member/${user}`)
-    .then((response) => {
+    var tok = localStorage.getItem('token');
+    Axios.get(`http://localhost:8080/member/${user}`,{headers: {"Authorization" : `${tok}`}}).then((response) => {
       setMember(response.data);
       console.log(response.data);
       setHACK("WORK");
@@ -42,6 +42,7 @@ function UpdateMember(props) {
 
   function saveMember(event) {
     event.preventDefault();
+    var tok = localStorage.getItem('token');
     let member = {
       role: Member.role,
       firstName: FirstName,
@@ -55,10 +56,9 @@ function UpdateMember(props) {
       postalCode: PostalCode,
       password: Password,
     };
-    axios
-      .put(`http://localhost:8080/member/${Member.username}`, member)
-      .then((response) => {
+    Axios.put(`http://localhost:8080/member/${Member.username}`, member,{headers: {"Authorization" : `${tok}`}}).then((response) => {
         console.log(response.data);
+        alert("The profile is successfully updated!")
       });
   }
 

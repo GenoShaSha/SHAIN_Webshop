@@ -11,14 +11,16 @@ class ListMemberComponent extends Component {
     };
   }
   componentDidMount() {
-    axios.get("http://localhost:8080/member").then((response) => {
+    var tok = localStorage.getItem('token');
+    axios.get("http://localhost:8080/member",{headers: {"Authorization" : `${tok}`}}).then((response) => {
       this.setState({ members: response.data });
     });
   }
 
   changeRole(username) {
+    var tok = localStorage.getItem('token');
     axios
-      .put(`http://localhost:8080/member/updateRole/${username}`)
+      .put(`http://localhost:8080/member/updateRole/${username}`,{headers: {"Authorization" : `${tok}`}})
       .then((response) => {
         window.location.href = "/member";
       });

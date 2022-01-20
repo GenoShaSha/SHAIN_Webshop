@@ -14,7 +14,8 @@ class ListProduct extends Component {
     // this.editProd = this.editProd.bind(this);
   }
   componentDidMount() {
-    axios.get("http://localhost:8080/product").then((response) => {
+    var tok = localStorage.getItem('token');
+    axios.get("http://localhost:8080/product",{headers: {"Authorization" : `${tok}`}}).then((response) => {
       this.setState({ products: response.data });
     });
   }
@@ -38,7 +39,6 @@ class ListProduct extends Component {
             <th>Size</th>
             <th>Quantity</th>
             <th>Update</th>
-            <th>Delete</th>
           </tr>
         </thead>
         <tbody style={{ textAlign: "center" }}>
@@ -59,14 +59,6 @@ class ListProduct extends Component {
                   Update Quantity
                 </Button>
               </td>
-              {/* <td>
-                <Button
-                  onClick={this.addProd.bind(this)}
-                  style={{ marginLeft: "10px" }}
-                >
-                  Delete Product
-                </Button>
-              </td> */}
             </tr>
           ))}
         </tbody>

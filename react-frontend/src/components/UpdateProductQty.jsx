@@ -1,6 +1,6 @@
-import axios from "axios";
+import Axios from "axios";
 import React, { Component, useEffect, useState } from "react";
-import {FormGroup, Label, Input} from "reactstrap"
+import { FormGroup, Label, Input } from "reactstrap";
 
 function UpdateProductQty(props) {
   const articleNumber = props.match.params.artNumb;
@@ -10,13 +10,13 @@ function UpdateProductQty(props) {
   const errorMessage = "";
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/product/${articleNumber}`)
-    .then((response) => {
-      setProduct(response.data);
-      console.log(response.data);
-      setHACK("WORK");
-      setQuantity(Product.qty);
-    }),
+    var tok = localStorage.getItem('token');
+    Axios.get(`http://localhost:8080/product/${articleNumber}`,{headers: {"Authorization" : `${tok}`}}) .then((response) => {
+        setProduct(response.data);
+        console.log(response.data);
+        setHACK("WORK");
+        setQuantity(Product.qty);
+      }),
       (error) => {
         console.log(error);
         this.setState({ errorMessage: error.message });
@@ -25,13 +25,14 @@ function UpdateProductQty(props) {
 
   function saveProduct(event) {
     event.preventDefault();
+    var tok = localStorage.getItem('token');
     let product = {
       qty: Quantity,
     };
-    axios
-      .put(`http://localhost:8080/product/${Product.articleNumber}`, product)
+    Axios.put(`http://localhost:8080/product/${Product.articleNumber}`, product)
       .then((response) => {
         console.log(response.data);
+        window.location.href = "/ListOfProduct";
       });
   }
 

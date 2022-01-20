@@ -21,21 +21,28 @@ export default class AddCategory extends React.Component {
 
   saveCat = (hndl) => {
     hndl.preventDefault();
-    let category = {
-      catCode: this.state.code,
-      name: this.state.name,
-      gender: this.state.gender,
-    };
-    axios.post("http://localhost:8080/category", category).then(
-      (response) => {
-        console.log(response);
-        window.location.href = "/ListOfCategory";
-      },
-      (error) => {
-        console.log(error);
-        this.setState({ errorMessage: error.message });
-      }
-    );
+    if(!this.state.code || !this.state.name || !this.state.gender ){
+      this.setState({errorMessage : "Please check the fields!"});
+    }
+    else{
+      var tok = localStorage.getItem('token');
+      let category = {
+        catCode: this.state.code,
+        name: this.state.name,
+        gender: this.state.gender,
+      };
+      axios.post("http://localhost:8080/category", category,
+      {headers: {"Authorization" : `${tok}`}}).then(
+        (response) => {
+          console.log(response);
+          window.location.href = "/ListOfCategory";
+        },
+        (error) => {
+          console.log(error);
+          this.setState({ errorMessage: error.message });
+        }
+      );  
+    }
   };
 
   changeCodeHandler = (event) => {

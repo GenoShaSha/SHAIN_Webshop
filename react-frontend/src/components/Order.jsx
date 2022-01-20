@@ -31,13 +31,13 @@ class Order extends Component {
       username = translator.sub;
     }
     if (role === "USER") {
-      axios.get(`http://localhost:8080/order/${username}`).then((response) => {
+      axios.get(`http://localhost:8080/order/${username}`,{headers: {"Authorization" : `${token}`}}).then((response) => {
         this.setState({
           orders: response.data,
         });
       });
     } else if (role === "ADMIN") {
-      axios.get(`http://localhost:8080/order`).then((response) => {
+      axios.get(`http://localhost:8080/order`,{headers: {"Authorization" : `${token}`}}).then((response) => {
         this.setState({
           orders: response.data,
         });

@@ -60,6 +60,10 @@ export class DataProvider extends Component {
     }
   };
 
+  emptyTheCart =() =>{
+    this.setState({cart: [], total:0})
+  }
+
 
   reduction = (id) => {
     const { cart } = this.state;
@@ -153,12 +157,13 @@ export class DataProvider extends Component {
 
   render() {
     const { products, cart, total,wishlist  } = this.state;
-    const { addCart, reduction, increase, removeProduct, getTotal, addToWishlist, wishlistRemoveProduct,MoveToCart} = this;
+    const { addCart, emptyTheCart, reduction, increase, removeProduct, getTotal, addToWishlist, wishlistRemoveProduct,MoveToCart} = this;
     return (
       <DataContext.Provider
         value={{
           products,
           addCart,
+          emptyTheCart,
           cart,
           reduction,
           increase,
@@ -167,8 +172,6 @@ export class DataProvider extends Component {
           getTotal,
           addToWishlist,
           wishlist,
-        //   wishlistReduceProduct,
-        //   wishlistIncreaseProduct,
           wishlistRemoveProduct,
           MoveToCart
 

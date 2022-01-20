@@ -30,6 +30,7 @@ export default class AddProduct extends React.Component {
 
   saveProd = (hndl) => {
     hndl.preventDefault();
+    var tok = localStorage.getItem('token');
     const product = {
       articleNumber: this.state.artNumb,
       productName: this.state.name,
@@ -39,7 +40,7 @@ export default class AddProduct extends React.Component {
       price: this.state.price,
       url: this.state.url,
     };
-    axios.post("http://localhost:8080/product", product).then(
+    axios.post("http://localhost:8080/product", product,{headers: {"Authorization" : `${tok}`}}).then(
       (response) => {
         console.log(response);
         window.location.href = "/ListOfProduct";
@@ -53,7 +54,8 @@ export default class AddProduct extends React.Component {
   };
 
   componentDidMount() {
-    axios.get("http://localhost:8080/category").then((response) => {
+    var tok = localStorage.getItem('token');
+    axios.get("http://localhost:8080/category",{headers: {"Authorization" : `${tok}`}}).then((response) => {
       this.setState({
         categories: response.data,
       });

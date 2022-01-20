@@ -109,6 +109,12 @@ class HeaderComponent extends Component {
                 <NavLink href="/Product/User/Cart">CART</NavLink>
               </NavItem>
 
+              <NavItem>
+                  <NavLink href="/Product/new/Announcement">
+                    ANNOUNCEMENT
+                  </NavLink>
+                </NavItem>
+
               {this.state.role == "ADMIN" ? (
                 <NavItem>
                   <NavLink href="/ListOfCategory">LIST OF CATEGORY</NavLink>
@@ -130,15 +136,6 @@ class HeaderComponent extends Component {
               ) : (
                 ""
               )}
-              {this.state.role == "ADMIN" ? (
-                <NavItem>
-                  <NavLink href="/Product/new/Announcement">
-                    ANNOUNCEMENT
-                  </NavLink>
-                </NavItem>
-              ) : (
-                ""
-              )}
 
               {this.state.role != null ? (
                 ""
@@ -149,7 +146,7 @@ class HeaderComponent extends Component {
                   </DropdownToggle>
                   <DropdownMenu right>
                     <DropdownItem href="/SignIn">LOGIN</DropdownItem>
-                    <DropdownItem href="/SignUp">REGISTER</DropdownItem>
+                    <DropdownItem href="/User/Profile/SignUp">REGISTER</DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
               )}
@@ -163,7 +160,7 @@ class HeaderComponent extends Component {
                     <DropdownItem href={"/" + this.state.username}>
                       My Profile
                     </DropdownItem>
-                    <DropdownItem href="/SignOut">LOGOUT</DropdownItem>
+                    <DropdownItem href="/User/Profile/SignOut">LOGOUT</DropdownItem>
                     <DropdownItem href="/Product/User/Order">
                       MY ORDER
                     </DropdownItem>

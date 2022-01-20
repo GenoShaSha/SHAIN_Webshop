@@ -85,7 +85,7 @@ class SignIn extends Component {
                     SIGN IN
                   </button>
                     <NavItem style={{ textAlign: "center" }}>
-                      <NavLink href="/SignUp">Hasn't Sign Up yet? click Here</NavLink>
+                      <NavLink href="/User/Profile/SignUp">Hasn't Sign Up yet? click Here</NavLink>
                     </NavItem>
                 </form>
               </div>
