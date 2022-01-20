@@ -6,6 +6,7 @@ import web_application.interfaces.IProductRepo;
 import web_application.interfaces.IProductService;
 import web_application.model.Member;
 import web_application.model.Product;
+import web_application.model.ProductTransferData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,15 +42,8 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public List<Product> getProductsByCategory_GenderAnAndCategory_Name(String gender, String name) {
-        ArrayList<Product> newItems = new ArrayList<>();
-        for (Product p : repo.getProductsByCategory_GenderAnAndCategory_Name(gender,name)) {
-            if (p.getQty() > 0){
-                p.setQty(-1);
-                newItems.add(p);
-            }
-        }
-        return newItems;
+    public List<ProductTransferData> getProductsByCategory_GenderAnAndCategory_Name(String gender, String name) {
+       return repo.getProductsByCategory_GenderAnAndCategory_Name(gender,name);
     }
 
     @Override

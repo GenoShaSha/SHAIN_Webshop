@@ -5,7 +5,9 @@ import org.springframework.stereotype.Repository;
 import web_application.dataConnection.IProduct;
 import web_application.interfaces.IProductRepo;
 import web_application.model.Product;
+import web_application.model.ProductTransferData;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -33,8 +35,12 @@ public class ProductRepo implements IProductRepo {
     }
 
     @Override
-    public List<Product> getProductsByCategory_GenderAnAndCategory_Name(String gender, String name) {
-        return repo.getProductsByCategory_GenderAndCategory_Name(gender,name);
+    public List<ProductTransferData> getProductsByCategory_GenderAnAndCategory_Name(String gender, String name) {
+        ArrayList<ProductTransferData> newItems = new ArrayList<>();
+        for (Product p : repo.getProductsByCategory_GenderAndCategory_Name(gender,name)) {
+            newItems.add(new ProductTransferData(p.getId(),p.getArticleNumber(),p.getProductName(),p.getCategory(),p.getSize(),p.getPrice(),p.getUrl(),p.getCount()));
+        }
+        return newItems;
     }
     @Override
     public Product getProductsByArticleNumber(int newArtNumb) {

@@ -150,7 +150,6 @@ export class DataProvider extends Component {
       this.setState({
         products: response.data,
       });
-      console.log(response.data);
     });
 
   }

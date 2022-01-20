@@ -7,6 +7,7 @@ import web_application.model.Product;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import web_application.model.ProductTransferData;
 
 import java.net.URI;
 import java.util.List;
@@ -33,10 +34,11 @@ public class ProductController {
 
 
     @GetMapping("/{CatGender}/{CatName}")
-    public ResponseEntity<List<Product>> getProductPath(@PathVariable(value = "CatGender") String gender,@PathVariable(value = "CatName") String name) {
-        List<Product> temp = logic.getProductsByCategory_GenderAnAndCategory_Name(gender,name);
+    public ResponseEntity<List<ProductTransferData>> getProductPath(@PathVariable(value = "CatGender") String gender, @PathVariable(value = "CatName") String name) {
+        List<ProductTransferData> temp = logic.getProductsByCategory_GenderAnAndCategory_Name(gender,name);
         return ResponseEntity.ok().body(temp);
     }
+
     @PostMapping()
     public ResponseEntity createProduct(@RequestBody Product product) {
 
@@ -45,7 +47,7 @@ public class ProductController {
                 String entity =  "This product already exists.";
                 return new ResponseEntity(entity, HttpStatus.CONFLICT);
             } else {
-                product.setCount(1);
+                product.setCount(0);
                 logic.AddProduct(product);
                 return new ResponseEntity(HttpStatus.CREATED);
             }

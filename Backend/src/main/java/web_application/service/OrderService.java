@@ -37,12 +37,15 @@ public class OrderService implements IOrderService {
         List<Product> unavailableProd = new ArrayList<>();
         List<ProductOrderAmount> listOfProductAmount = new ArrayList<>();
 
-        double price = order.getTotalPrice();
+        int price = order.getTotalPrice();
 
 
         for (Product p : listOfProduct) {
             Product item = prodLogic.getProductsByArticleNumber(p.getArticleNumber());
             if (item.getQty() < p.getCount() && item.getQty() >= 1 ){
+                int difference = p.getCount()- item.getQty();
+                int temp = (int) (difference*item.getPrice());
+                price -= temp;
                 p.setCount(p.getQty());
             }
             if (item.getQty() < 1) {
@@ -64,7 +67,7 @@ public class OrderService implements IOrderService {
                 listOfProductAmount.add(new ProductOrderAmount(p,p.getCount()));
             }
             String random = RandomString.make(5);
-            Order newOrder = new Order(order.getTotalPrice(),order.getUsername(),random,listOfProductAmount,order.getAddress());
+            Order newOrder = new Order(price,order.getUsername(),random,listOfProductAmount,order.getAddress());
 
             repo.AddOrder(newOrder);
 
