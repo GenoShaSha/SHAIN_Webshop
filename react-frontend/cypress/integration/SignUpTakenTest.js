@@ -2,14 +2,14 @@ describe('Register Test', () => {
     it('.get()', () => {
         cy.visit('http://localhost:3000/SignUp')
       cy.get('input[name="usrname"]')
-      .type('test1')
+      .type('admin1')
 
       cy.get('input[name="email"]')
-      .type('nevena@gmail.com')
+      .type('admin1@gmail.com')
 
 
       cy.get('input[name="password"]')
-      .type('nevena')
+      .type('admin1')
 
       
       cy.get('button[name="btn"]')

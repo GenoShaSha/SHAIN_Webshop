@@ -2,7 +2,7 @@ describe('Register Test', () => {
     it('.get()', () => {
         cy.visit('http://localhost:3000/SignUp')
       cy.get('input[name="usrname"]')
-      .type('test1')
+      .type('nevena')
 
       cy.get('input[name="email"]')
       .type('nevena@gmail.com')

@@ -1,5 +1,4 @@
 stages:
-- docker-build
 - build
 - test
 - sonarqube-check
@@ -34,14 +33,3 @@ sonarqube-check:
     - ./gradlew sonarqube
     - ./gradlew.bat --stop
   allow_failure: true
-
-docker-build:
-  # Use the official docker image.
-  image: docker:latest
-  stage: docker-build
-  services:
-    - docker:dind
-  script:
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-    - docker build --pull -t "$CI_REGISTRY_IMAGE${tag}" .
-    - docker push "$CI_REGISTRY_IMAGE${tag}"
